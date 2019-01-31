@@ -3,7 +3,7 @@ class SitesController < ApplicationController
 
   def index
     @user = current_user
-    @sites = Site.all
+    @sites = @user.sites
   end
 
   def show
@@ -17,8 +17,7 @@ class SitesController < ApplicationController
   end
 
   def create
-    @site = Site.new(site_params)
-    @site.user_id = current_user.id
+    @site = current_user.sites.build(site_params)
 
     if @site.save
       redirect_to @site, notice: 'Site was successfully created.'
