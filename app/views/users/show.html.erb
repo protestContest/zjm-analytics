@@ -1,1 +1,6 @@
 <h1><%= @user.email %></h1>
+<ul>
+  <% @user.sites.each do |site| %>
+    <li><%= link_to site.name, site %>
+  <% end %>
+</ul>
