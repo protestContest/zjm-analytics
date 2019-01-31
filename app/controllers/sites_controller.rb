@@ -1,5 +1,6 @@
 class SitesController < ApplicationController
   before_action :set_site, only: [:show, :edit, :update, :destroy]
+  before_action :user_owns_site, only: [:show, :edit, :update, :destroy]
 
   def index
     @user = current_user
@@ -49,6 +50,12 @@ class SitesController < ApplicationController
   private
     def site_params
       params.require(:site).permit(:name)
+    end
+
+    def user_owns_site
+      if @site.user != current_user
+        redirect_to current_user, notice: 'You don\'t own that site'
+      end
     end
 
     def set_site
