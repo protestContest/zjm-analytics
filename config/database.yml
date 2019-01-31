@@ -19,6 +19,4 @@ test:
 
 production:
   <<: *default
-  database: zjm_analytics
-  username: db_user
-  password: <%= ENV['ZJM_ANALYTICS_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
