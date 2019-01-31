@@ -54,7 +54,7 @@ class SitesController < ApplicationController
 
     def user_owns_site
       if @site.user != current_user
-        redirect_to current_user, notice: 'You don\'t own that site'
+        render 'shared/error', notice: 'You don\'t own that site', status: :forbidden
       end
     end
 

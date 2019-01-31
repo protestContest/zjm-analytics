@@ -42,6 +42,7 @@ group :development, :test do
   gem 'guard'
   gem 'guard-minitest'
   gem 'selenium-webdriver'
+  gem 'rails-controller-testing'
 end
 
 group :development do
