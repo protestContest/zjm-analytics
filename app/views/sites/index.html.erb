@@ -1,0 +1,8 @@
+<h1>All Sites</h1>
+<ul>
+  <% @sites.each do |site| %>
+    <li><%= link_to site.name, site %>
+  <% end %>
+</ul>
+
+<%= link_to 'Create site', new_site_path %>

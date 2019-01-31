@@ -9,5 +9,8 @@ Rails.application.routes.draw do
     unauthenticated do
       root 'devise/sessions#new', as: :unauthenticated_root
     end
+
+    resources :sites
+    resources :users, only: [:show]
   end
 end
