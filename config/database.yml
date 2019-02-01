@@ -8,13 +8,13 @@ default: &default
 development:
   <<: *default
   database: zjm-analytics_dev
-  username: db_dev
+  username: db_user
   password: password
 
 test:
   <<: *default
   database: zjm-analytics_test
-  username: db_dev
+  username: db_user
   password: password
 
 production:
