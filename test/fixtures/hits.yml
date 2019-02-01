@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  hit_type: MyString
+  location: MyString
+  language: MyString
+  encoding: MyString
+  title: MyString
+  color_depth: MyString
+  screen_res: MyString
+  viewport: MyString
+  tracking_id: MyString
+  client_id: MyString
+  site: one
+
+two:
+  hit_type: MyString
+  location: MyString
+  language: MyString
+  encoding: MyString
+  title: MyString
+  color_depth: MyString
+  screen_res: MyString
+  viewport: MyString
+  tracking_id: MyString
+  client_id: MyString
+  site: two

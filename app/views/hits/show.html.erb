@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Hit type:</strong>
+  <%= @hit.hit_type %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @hit.location %>
+</p>
+
+<p>
+  <strong>Language:</strong>
+  <%= @hit.language %>
+</p>
+
+<p>
+  <strong>Encoding:</strong>
+  <%= @hit.encoding %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @hit.title %>
+</p>
+
+<p>
+  <strong>Color depth:</strong>
+  <%= @hit.color_depth %>
+</p>
+
+<p>
+  <strong>Screen res:</strong>
+  <%= @hit.screen_res %>
+</p>
+
+<p>
+  <strong>Viewport:</strong>
+  <%= @hit.viewport %>
+</p>
+
+<p>
+  <strong>Tracking:</strong>
+  <%= @hit.tracking_id %>
+</p>
+
+<p>
+  <strong>Client:</strong>
+  <%= @hit.client_id %>
+</p>
+
+<p>
+  <strong>Site:</strong>
+  <%= @hit.site %>
+</p>
+
+<%= link_to 'Edit', edit_hit_path(@hit) %> |
+<%= link_to 'Back', hits_path %>

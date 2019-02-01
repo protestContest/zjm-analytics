@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Hits</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Hit type</th>
+      <th>Location</th>
+      <th>Language</th>
+      <th>Encoding</th>
+      <th>Title</th>
+      <th>Color depth</th>
+      <th>Screen res</th>
+      <th>Viewport</th>
+      <th>Tracking</th>
+      <th>Client</th>
+      <th>Site</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @hits.each do |hit| %>
+      <tr>
+        <td><%= hit.hit_type %></td>
+        <td><%= hit.location %></td>
+        <td><%= hit.language %></td>
+        <td><%= hit.encoding %></td>
+        <td><%= hit.title %></td>
+        <td><%= hit.color_depth %></td>
+        <td><%= hit.screen_res %></td>
+        <td><%= hit.viewport %></td>
+        <td><%= hit.tracking_id %></td>
+        <td><%= hit.client_id %></td>
+        <td><%= hit.site %></td>
+        <td><%= link_to 'Show', hit %></td>
+        <td><%= link_to 'Edit', edit_hit_path(hit) %></td>
+        <td><%= link_to 'Destroy', hit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Hit', new_hit_path %>
