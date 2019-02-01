@@ -3,6 +3,7 @@ class HitsController < ApplicationController
 
   def track
     site_data = Site.parse_tracking_id(params[:tracking_id])
+
     if site_data == nil then
       head :unprocessable_entity
       return
@@ -12,6 +13,7 @@ class HitsController < ApplicationController
 
     if !site then
       head :not_found
+      return
     end
 
     hit = site.hits.build({

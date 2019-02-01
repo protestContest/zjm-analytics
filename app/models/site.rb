@@ -11,9 +11,12 @@ class Site < ApplicationRecord
     "ZA-#{user_id}-#{self.id}"
   end
 
+  def self.tracking_id_regex
+    return /\AZA-([[:digit:]]{6})-([[:digit:]]+)\z/
+  end
+
   def self.parse_tracking_id tracking_id
-    tracking_id_regex = /^ZA-([[:digit:]]{6})-([[:digit:]]+)$/
-    matches = tracking_id.match(tracking_id_regex)
+    matches = tracking_id.match(self.tracking_id_regex)
     if matches
       return {
         user_id: matches[1].to_i,
