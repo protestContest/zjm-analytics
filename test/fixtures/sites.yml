@@ -7,7 +7,6 @@
 one:
   id: 1
   name: 'Test Site'
-  tracking_id: one_tracking_id
   user_id: 1
 
 two:

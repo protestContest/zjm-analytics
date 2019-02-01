@@ -2,8 +2,13 @@ class HitsController < ApplicationController
   skip_before_action :authenticate_user!, only: :track
 
   def track
-    tracking_id = params[:tracking_id]
-    site = Site.find_by tracking_id: tracking_id
+    site_data = Site.parse_tracking_id(params[:tracking_id])
+    if site_data == nil then
+      head :unprocessable_entity
+      return
+    end
+
+    site = Site.find(site_data[:site_id])
 
     if !site then
       head :not_found
