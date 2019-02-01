@@ -1,27 +1,32 @@
 class HitsController < ApplicationController
-  def create
+  skip_before_action :authenticate_user!, only: :track
+
+  def track
     tracking_id = params[:tracking_id]
     site = Site.find_by tracking_id: tracking_id
+
     if !site then
       head :not_found
     end
 
-    @hit = Hit.new(hit_params)
+    hit = site.hits.build({
+      hit_type: params[:hit_type],
+      location: params[:location],
+      language: params[:language],
+      encoding: params[:encoding],
+      title: params[:title],
+      color_depth: params[:color_depth],
+      screen_res: params[:screen_res],
+      viewport: params[:viewport],
+      tracking_id: params[:tracking_id],
+      client_id: params[:client_id]
+    })
 
-    respond_to do |format|
-      if @hit.save
-        format.html { redirect_to @hit, notice: 'Hit was successfully created.' }
-        format.json { render :show, status: :created, location: @hit }
-      else
-        format.html { render :new }
-        format.json { render json: @hit.errors, status: :unprocessable_entity }
-      end
+    if hit.save then
+      head :ok
+    else
+      head :unprocessable_entity
     end
   end
 
-  private
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def hit_params
-      params.require(:hit).permit(:hit_type, :location, :language, :encoding, :title, :color_depth, :screen_res, :viewport, :tracking_id, :client_id, :site_id)
-    end
 end

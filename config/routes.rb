@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get '/track', to: 'hits#create', as: 'tracking'
+  get '/track', to: 'hits#track', as: 'tracking'
 
   devise_for :users
 

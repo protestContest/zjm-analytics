@@ -9,7 +9,7 @@ one:
   color_depth: MyString
   screen_res: MyString
   viewport: MyString
-  tracking_id: MyString
+  tracking_id: 7
   client_id: MyString
   site: one
 
