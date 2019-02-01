@@ -30,10 +30,16 @@ class HitsController < ApplicationController
     })
 
     if hit.save then
-      head :ok
+      send_file pixel_path, type: 'image/gif', disposition: 'inline'
     else
       head :unprocessable_entity
     end
   end
+
+  private
+
+    def pixel_path
+      return Rails.root.join('public', 'pixel.gif')
+    end
 
 end
