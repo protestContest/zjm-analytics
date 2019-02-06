@@ -1,4 +1,10 @@
 <h1><%= @site.name %></h1>
+<h2><%= @num_hits %> hits</h2>
+<ul>
+<% @hits.each do |hit| %>
+  <li><%= hit.Day %>: <%= hit.day_hits %>
+<% end %>
+</ul>
 <h2>Tracking Code</h2>
 <%= render "tracking_code" %>
 <ul>
