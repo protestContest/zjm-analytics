@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
-  def index
+  def dashboard
+    @user = current_user
+    @sites = @user.sites
   end
 end

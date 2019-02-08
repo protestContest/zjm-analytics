@@ -1,8 +1,9 @@
-<h1>All Sites</h1>
+<h1>Sites</h1>
 <ul>
   <% @sites.each do |site| %>
     <li><%= link_to site.name, site %>
   <% end %>
 </ul>
 
-<%= link_to 'Create site', new_site_path %>
+
+<%= link_to 'Create Site', new_site_path %>

@@ -2,11 +2,6 @@ class SitesController < ApplicationController
   before_action :set_site, only: [:show, :edit, :update, :destroy]
   before_action :user_owns_site, only: [:show, :edit, :update, :destroy]
 
-  def index
-    @user = current_user
-    @sites = @user.sites
-  end
-
   def show
     @num_hits = @site.hits.length
     @hits = @site.hits.select('date_trunc(\'day\', created_at) as "Day", count(*) as day_hits').where({ created_at: (Time.now - 1.month)..Time.now }).group('1')
