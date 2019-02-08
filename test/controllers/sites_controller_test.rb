@@ -3,23 +3,6 @@ require 'test_helper'
 class SitesControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 
-  test "logged in user can see sites" do
-    user = users(:zack)
-    site = sites(:one)
-
-    assert_equal user, site.user
-
-    sign_in user
-
-    get sites_url
-    assert_template "sites/index"
-  end
-
-  test "unauthenticated user cannot see sites" do
-    get sites_url
-    assert_redirected_to new_user_session_url
-  end
-
   test "logged in user can see owned site" do
     user = users(:zack)
     site = sites(:one)

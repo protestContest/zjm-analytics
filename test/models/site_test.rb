@@ -48,4 +48,5 @@ class SiteTest < ActiveSupport::TestCase
     site_data = Site.parse_tracking_id tracking_id
     assert_nil site_data
   end
+
 end
