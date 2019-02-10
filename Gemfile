@@ -22,7 +22,6 @@ gem 'devise'
 gem 'pg'
 
 gem 'sidekiq'
-gem 'screencap'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
