@@ -2,6 +2,10 @@ class SitesController < ApplicationController
   before_action :set_site, only: [:show, :edit, :update, :destroy]
   before_action :user_owns_site, only: [:show, :edit, :update, :destroy]
 
+  def index
+    redirect_to dashboard_url
+  end
+
   def show
     @num_hits = @site.hits.length
     @hits = @site.hits.select('date_trunc(\'day\', created_at) as "Day", count(*) as day_hits').where({ created_at: (Time.now - 1.month)..Time.now }).group('1')
@@ -39,7 +43,7 @@ class SitesController < ApplicationController
   def destroy
     @site.destroy
     respond_to do |format|
-      format.html { redirect_to sites_url, notice: 'Site was successfully destroyed.' }
+      format.html { redirect_to dashboard_url, notice: 'Site was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
