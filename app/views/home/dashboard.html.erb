@@ -1,9 +1,18 @@
-<h1>Sites</h1>
-<ul>
+<header class='page-header'>
+  <h1 class='h1'>Sites</h1>
+  <div class='page-header__actions'>
+    <%= link_to 'New Site', new_site_path, class: 'button primary' %>
+  </div>
+</header>
+
+<ul class='grid-list grid-list--3'>
   <% @sites.each do |site| %>
-    <li><%= link_to site.name, site %>
+    <li class='grid-list__item'>
+      <%= link_to site, class: 'site-tile' do %>
+        <img class='site-tile__img' src='<%= site.screenshot_url %>' />
+        <div class='site-tile__title'><%= site.name %></div>
+        <div class='site-tile__subtitle'><%= site.url %></div>
+      <% end %>
+    </li>
   <% end %>
 </ul>
-
-
-<%= link_to 'Create Site', new_site_path %>

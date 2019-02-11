@@ -1,0 +1,19 @@
+.site-tile {
+  display: flex;
+  flex-direction: column;
+}
+
+.site-tile .site-tile__img {
+  height: 230px;
+  background-color: #ECECEC;
+  margin-bottom: 10px;
+}
+
+.site-tile .site-tile__title {
+  font-size: 16px;
+}
+
+.site-tile .site-tile__subtitle {
+  font-size: 12px;
+  font-style: italic;
+}

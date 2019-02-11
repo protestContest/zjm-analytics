@@ -6,12 +6,13 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css">
   </head>
 
-  <body>
-    <header>
-      <div class='title'><a href='/'>ZJM Analytics</a></div>
-      <nav>
+  <body class='layout'>
+    <header class='header'>
+      <div class='header__title'><a href='/'>ZJM Analytics</a></div>
+      <nav class='site-nav'>
         <% if user_signed_in? %>
           <%= link_to current_user.email, current_user %>
           <%= link_to "Logout", destroy_user_session_path, method: :delete %>
@@ -29,7 +30,9 @@
       <p id="alert"><%= alert %></p>
     <% end %>
 
+    <main class='layout__main layout--container'>
     <%= yield %>
+    </main>
 
     <%= debug(params) if Rails.env.development? %>
 
