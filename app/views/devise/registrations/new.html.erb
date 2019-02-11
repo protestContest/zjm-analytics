@@ -1,0 +1,33 @@
+<header class='page-header'>
+  <h1 class='h1'>Sign up</h1>
+</header>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'form col-4 offset-4' }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="form__row">
+    <%= f.label :email, class: 'label' %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'input' %>
+  </div>
+
+  <div class="form__row">
+    <%= f.label :password, class: 'label' %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %>
+    <%= f.password_field :password, autocomplete: "new-password", class: 'input' %>
+  </div>
+
+  <div class="form__row">
+    <%= f.label :password_confirmation, class: 'label' %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'input' %>
+  </div>
+
+  <div class="form__row">
+    <%= f.submit "Sign up", class: 'button button--large' %>
+  </div>
+<% end %>
+
+<div class='col-4 offset-4'>
+<%= render "devise/shared/links" %>
+</div>
