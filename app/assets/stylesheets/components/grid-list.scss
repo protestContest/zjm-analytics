@@ -1,17 +1,10 @@
 .grid-list {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-areas: "a a a";
+  grid-gap: 20px;
 }
 ul.grid-list {
   margin: 0; padding: 0;
-}
-
-.grid-list.grid-list--3 .grid-list__item {
-  flex: 0 0 33.3333%;
-}
-
-.grid-list .grid-list__item {
-  margin-right: 20px;
 }
 .grid-list li {
   list-style-type: none;
