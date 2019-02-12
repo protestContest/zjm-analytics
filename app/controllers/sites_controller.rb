@@ -8,7 +8,9 @@ class SitesController < ApplicationController
 
   def show
     @num_hits = @site.hits.length
-    @hits = @site.hits.select('date_trunc(\'day\', created_at) as "Day", count(*) as day_hits').where({ created_at: (Time.now - 1.month)..Time.now }).group('1')
+    @hits = {
+      by_day: @site.hits_by_day
+    }
   end
 
   def new

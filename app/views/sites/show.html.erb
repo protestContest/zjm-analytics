@@ -4,20 +4,27 @@
   <h2 class='h2'><%= @site.url %></h2>
   <% end %>
   <div class='page-header__actions'>
-    <%= link_to 'Edit Site', edit_site_path, class: 'button primary' %>
+    <%= link_to 'Edit Site', edit_site_path, class: 'button' %>
+    <%= link_to 'Delete', @site, method: :delete, class: 'button' %>
   </div>
 </header>
 
+<canvas id='hitChart'></canvas>
+<script>
+  var ctx = document.getElementById('hitChart').getContext('2d');
+  var chart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: <%= raw @hits[:by_day].map { |hit| hit.day.strftime("%m/%d") }.to_s %>,
+      datasets: [{
+        label: 'Hits',
+        data: <%= @hits[:by_day].map { |hit| hit.num_hits }.to_s %>,
+        backgroundColor: '#EDE100'
+      }]
+    }
+  });
+</script>
 
-<h2><%= @num_hits %> hits</h2>
-<ul>
-<% @hits.each do |hit| %>
-  <li><%= hit.Day %>: <%= hit.day_hits %>
-<% end %>
-</ul>
+
 <h2>Tracking Code</h2>
 <%= render "tracking_code" %>
-<ul>
-  <li><%= link_to 'Edit', edit_site_path %>
-  <li><%= link_to 'Delete', @site, method: :delete %>
-</ul>
