@@ -1,7 +1,13 @@
-<h1><%= @site.name %></h1>
-<h2><%= @site.url %></h2>
+<header class='page-header'>
+  <h1 class='h1'><%= @site.name %></h1>
+  <% if @site.url %>
+  <h2 class='h2'><%= @site.url %></h2>
+  <% end %>
+  <div class='page-header__actions'>
+    <%= link_to 'Edit Site', edit_site_path, class: 'button primary' %>
+  </div>
+</header>
 
-<%= link_to 'Edit', edit_site_path %>
 
 <h2><%= @num_hits %> hits</h2>
 <ul>

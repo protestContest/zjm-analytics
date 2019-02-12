@@ -11,14 +11,14 @@
 
   <body class='layout'>
     <header class='header'>
-      <div class='header__title'><a href='/'>ZJM Analytics</a></div>
+      <div class='header__title'><a href='/'><%= image_tag('logo.svg', class: 'header__logo', height: 28) %></a></div>
       <nav class='site-nav'>
         <% if user_signed_in? %>
-          <%= link_to current_user.email, current_user %>
-          <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+          <%= link_to current_user.email, current_user, class: 'site-nav__item' %>
+          <%= link_to "Logout", destroy_user_session_path, method: :delete, class: 'site-nav__item' %>
         <% else %>
-          <%= link_to "Sign up", new_user_registration_path %>
-          <%= link_to "Login", new_user_session_path %>
+          <%= link_to "Sign up", new_user_registration_path, class: 'site-nav__item' %>
+          <%= link_to "Login", new_user_session_path, class: 'site-nav__item' %>
         <% end %>
       </nav>
     </header>
