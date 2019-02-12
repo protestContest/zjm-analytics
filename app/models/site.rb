@@ -18,7 +18,7 @@ class Site < ApplicationRecord
             FROM generate_series(0, 30, 1) AS offs
            ) d LEFT OUTER JOIN
            hits
-           ON d.Day = date_trunc('day', hits.created_at)
+           ON d.Day = date_trunc('day', hits.created_at) AND hits.site_id = #{self.id}
       GROUP BY d.day order by d.day;
     SQL
 
