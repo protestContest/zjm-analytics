@@ -1,6 +1,6 @@
 .grid-list {
   display: grid;
-  grid-template-areas: "a a a";
+  grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 20px;
 }
 ul.grid-list {
