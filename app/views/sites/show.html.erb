@@ -1,8 +1,10 @@
 <header class='page-header'>
-  <h1 class='h1'><%= @site.name %></h1>
-  <% if @site.url %>
-  <h2 class='h2'><%= @site.url %></h2>
-  <% end %>
+  <hgroup>
+    <h1 class='h1'><%= @site.name %></h1>
+    <% if @site.url %>
+    <h2 class='h2'><%= @site.url %></h2>
+    <% end %>
+  </hgroup>
   <div class='page-header__actions'>
     <%= link_to 'Edit Site', edit_site_path, class: 'page-header__action button' %>
   </div>
