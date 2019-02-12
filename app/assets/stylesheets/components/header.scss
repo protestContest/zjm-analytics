@@ -8,10 +8,10 @@
   align-items: center;
   margin-bottom: 50px;
 }
-.header :first-child {
+.header > :first-child {
   margin-left: 40px;
 }
-.header :last-child {
+.header > :last-child {
   margin-right: 40px;
 }
 

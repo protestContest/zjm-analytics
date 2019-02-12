@@ -12,7 +12,7 @@
 
   <body class='layout'>
     <header class='header'>
-      <div class='header__title'><a href='/'><%= image_tag('logo.svg', class: 'header__logo', height: 28) %></a></div>
+      <div class='header__title'><a href='/'><%= image_tag('logo.png', class: 'header__logo', height: 28) %></a></div>
       <nav class='site-nav'>
         <% if user_signed_in? %>
           <%= link_to current_user.email, current_user, class: 'site-nav__item' %>
