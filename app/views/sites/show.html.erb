@@ -4,8 +4,7 @@
   <h2 class='h2'><%= @site.url %></h2>
   <% end %>
   <div class='page-header__actions'>
-    <%= link_to 'Edit Site', edit_site_path, class: 'button' %>
-    <%= link_to 'Delete', @site, method: :delete, class: 'button' %>
+    <%= link_to 'Edit Site', edit_site_path, class: 'page-header__action button' %>
   </div>
 </header>
 
@@ -26,5 +25,5 @@
 </script>
 
 
-<h2>Tracking Code</h2>
+<h2 class='h2'>Tracking Code</h2>
 <%= render "tracking_code" %>

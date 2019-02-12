@@ -1,1 +1,5 @@
 <%= render :partial => 'form' %>
+
+<div class='col-4 offset-4'>
+  <%= link_to 'Delete Site', @site, method: :delete, data: {confirm: "Are you sure?"}, class: 'button button--danger' %>
+</div>
