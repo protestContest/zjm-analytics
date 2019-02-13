@@ -1,39 +1,26 @@
-<pre id='tracking_code'>
+<pre id='tracking_code' class='pre'>
 &lt;script&gt;
-  var clientId = document.cookie.replace(/(?:(?:^|.*;\s*)_za\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-  if (clientId.length === 0) {
-    clientId = (function() {
-      var dt = new Date().getTime();
-      var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-          var r = (dt + Math.random()*16)%16 | 0;
-          dt = Math.floor(dt/16);
-          return (c=='x' ? r :(r&0x3|0x8)).toString(16);
-      });
-      return uuid;
-    })();
-
-    document.cookie = '_za=' + clientId + '; max-age=63072000; domain=' + document.location.hostname;
-  }
-  var i = new Image();
-  i.src = `<%= tracking_url %>?hit_type=pageview&location=${window.location}&language=${navigator.language}&encoding=${document.charset}&title=${document.title}&color_depth=${screen.colorDepth}&screen_res=${screen.width}x${screen.height}&viewport=${innerWidth}x${innerHeight}&tracking_id=<%= @site.tracking_id %>&client_id=${clientId}`;
+var clientId=document.cookie.replace(/(?:(?:^|.*;\s*)_za\s*\=\s*([^;]*).*$)|^.*$/,"$1");0===clientId.length&&(clientId=function(){var a=new Date().getTime(),b="xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,function(b){var c=0|(a+16*Math.random())%16;return a=Math.floor(a/16),("x"==b?c:8|3&c).toString(16)});return b}(),document.cookie="_za="+clientId+"; max-age=63072000; domain="+document.location.hostname);var i=new Image;i.src=`<%= tracking_url %>?hit_type=pageview&location=${window.location}&language=${navigator.language}&encoding=${document.charset}&title=${document.title}&color_depth=${screen.colorDepth}&screen_res=${screen.width}x${screen.height}&viewport=${innerWidth}x${innerHeight}&tracking_id=<%= @site.tracking_id %>&client_id=${clientId}`;
 &lt;/script&gt;
 </pre>
-<button onclick="copyCode(this)">Copy Code</button>
+<button class='button' onclick="copyCode(this)">Copy Code</button>
 <script>
   function copyCode(button) {
+    var succeed = true;
     var el = document.getElementById('tracking_code');
 
     var target = document.createElement("textarea");
-    target.style.position = "absolute";
-    target.style.left = "-9999px";
-    target.style.top = "0";
+    target.style.position = "fixed";
+    target.style.left = "0px";
+    target.style.top = "0px";
+    target.style.pointerEvents = "none";
+    target.style.opacity = "0";
     document.body.appendChild(target);
     target.textContent = el.textContent;
 
     var currentFocus = document.activeElement;
     target.focus();
     target.setSelectionRange(0, target.value.length);
-    var succeed = true;
     try {
       document.execCommand("copy");
     } catch(e) {
@@ -41,7 +28,7 @@
     }
 
     if (currentFocus && typeof currentFocus.focus === "function") {
-        currentFocus.focus();
+        // currentFocus.focus();
     }
     target.textContent = "";
 

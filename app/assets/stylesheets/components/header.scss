@@ -1,8 +1,10 @@
+@import '../shared/colors';
+
 .header {
   width: 100%;
   height: 50px;
   flex: 0 0 50px;
-  background: #fafafa;
+  background: $c-less-white;
   border-bottom: 2px solid #ccc;
   display: flex;
   align-items: center;

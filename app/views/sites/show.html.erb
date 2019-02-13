@@ -2,7 +2,7 @@
   <hgroup>
     <h1 class='h1'><%= @site.name %></h1>
     <% if @site.url %>
-    <h2 class='h2'><%= @site.url %></h2>
+    <h2 class='subtitle'><%= @site.url %></h2>
     <% end %>
   </hgroup>
   <div class='page-header__actions'>
@@ -10,22 +10,43 @@
   </div>
 </header>
 
-<canvas id='hitChart'></canvas>
-<script>
-  var ctx = document.getElementById('hitChart').getContext('2d');
-  var chart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: <%= raw @hits[:by_day].map { |hit| hit.day.strftime("%m/%d") }.to_s %>,
-      datasets: [{
-        label: 'Hits',
-        data: <%= @hits[:by_day].map { |hit| hit.num_hits }.to_s %>,
-        backgroundColor: '#EDE100'
-      }]
-    }
-  });
-</script>
+<section class='section'>
+  <header class='page-header'>
+    <h2 class='h2'>Unique Users</h2>
+    <div class='page-header__actions'>
+      <div class='label'>View By</div>
+      <div class='tab-list'>
+        <div class='tab-list__tab tab-list__tab--active'>Day</div>
+        <div class='tab-list__tab'>Week</div>
+        <div class='tab-list__tab'>Month</div>
+      </div>
+    </div>
+  </header>
 
+  <canvas id='hitChart'></canvas>
+  <script>
+    var ctx = document.getElementById('hitChart').getContext('2d');
+    var chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: <%= raw @hits[:by_day].map { |hit| hit.day.strftime("%m/%d") }.to_s %>,
+        datasets: [{
+          label: 'Unique users',
+          data: <%= @hits[:by_day].map { |hit| hit.num_hits }.to_s %>,
+          backgroundColor: '#EDE100'
+        }]
+      },
+      options: {
+        legend: {
+          display: false
+        }
+      }
+    });
+  </script>
+</section>
 
-<h2 class='h2'>Tracking Code</h2>
-<%= render "tracking_code" %>
+<section>
+  <h2 class='h2'>Tracking Code</h2>
+  <p class='t-muted'>Add this to your website to start tracking page views</p>
+  <%= render "tracking_code" %>
+</section>

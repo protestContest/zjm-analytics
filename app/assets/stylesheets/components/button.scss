@@ -2,9 +2,9 @@
 
 .button {
   padding: 4px 12px;
-  border: 1px solid #666;
-  color: #666;
-  background-color: #fdfdfd;
+  border: 1px solid $c-black;
+  color: $c-black;
+  background-color: $c-white;
   border-radius: 3px;
   -webkit-appearance: none;
   font-size: 14px;
@@ -12,6 +12,7 @@
   letter-spacing: 0.2px;
   cursor: pointer;
   font-family: inherit;
+  transition: background-color 200ms, color 200ms;
 }
 
 .button:visited {
@@ -19,7 +20,7 @@
 }
 
 .button:hover {
-  background-color: $c-primary-pale;
+  background-color: $c-least-white;
 }
 
 .button:active {
@@ -27,13 +28,18 @@
 }
 
 .button.button--danger {
-  border: 1px solid #ed0000;
-  color: #ed0000;
-  background-color: #fdfdfd;
-  transition: color 200ms, background-color 200ms;
+  border: 1px solid $c-danger;
+  color: $c-danger;
+  background-color: $c-white;
 }
 
 .button.button--danger:hover {
-  background-color: #ed0000;
-  color: #fdfdfd;
+  background-color: $c-danger;
+  color: $c-white;
+}
+
+.button[disabled] {
+  color: $c-dark-gray;
+  border-color: $c-dark-gray;
+  background-color: $c-least-white;
 }
