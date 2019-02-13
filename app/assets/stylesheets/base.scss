@@ -2,6 +2,7 @@
 
 html {
   width: 100%;
+  height: 100%;
   margin: 0;
   padding: 0;
 }
@@ -19,11 +20,11 @@ body {
 .layout {
   display: flex;
   flex-direction: column;
-  padding-bottom: 40px;
 }
 
 .layout .layout__main {
   flex: 1;
+  padding-bottom: 100px;
 }
 
 .layout .layout--container {

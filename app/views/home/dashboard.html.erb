@@ -17,8 +17,10 @@
             <%= link_to site.name, site, class: 'site-tile__title' %>
             <%= link_to site.url, site, class: 'site-tile__subtitle' %>
           </div>
-          <%= link_to site.url, target: '_blank', class: 'flex-view__pull-right' do %>
-            <%= image_tag 'external.png', size: 16 %>
+          <% if site.url? %>
+            <%= link_to site.url, target: '_blank', class: 'flex-view__pull-right' do %>
+              <%= image_tag 'external.png', size: 16 %>
+            <% end %>
           <% end %>
         </div>
       </div>

@@ -36,7 +36,15 @@
     <%= yield %>
     </main>
 
-    <%= debug(params) if Rails.env.development? %>
+    <footer class='footer'>
+      <div class='layout--container'>
+        <ul class='footer-list'>
+          <li>Privacy Policy</li>
+          <li>Terms of Service</li>
+          <li>Feedback</li>
+        </ul>
+      </div>
+    </footer>
 
   </body>
 </html>
