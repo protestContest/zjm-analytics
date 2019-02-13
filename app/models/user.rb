@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  include Gravtastic
+  gravtastic
+
   has_many :sites, dependent: :destroy
 
   # Include default devise modules. Others available are:

@@ -1,7 +1,16 @@
+@import '../shared/colors';
+
 .site-nav {
   font-size: 12px;
 }
 
 .site-nav .site-nav__item {
   margin-left: 10px;
+}
+
+.site-nav .site-nav__user-icon {
+  height: 32px;
+  width: 32px;
+  border-radius: 16px;
+  border: 1px solid $c-light-gray;
 }
