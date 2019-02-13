@@ -25,6 +25,34 @@ class Site < ApplicationRecord
     return self.hits.find_by_sql(query)
   end
 
+  def hits_by_week
+    query = <<-SQL
+      SELECT d.week, count(hits.id) as num_hits
+      FROM (SELECT date_trunc('week', (current_date - (7*offs))) AS week
+            FROM generate_series(0, 12, 1) AS offs
+           ) d LEFT OUTER JOIN
+           hits
+           ON d.week = date_trunc('week', hits.created_at) AND hits.site_id = #{self.id}
+      GROUP BY d.week order by d.week;
+    SQL
+
+    return self.hits.find_by_sql(query)
+  end
+
+  def hits_by_month
+    query = <<-SQL
+      SELECT d.month, count(hits.id) as num_hits
+      FROM (SELECT date_trunc('month', (current_date - (30*offs))) AS month
+            FROM generate_series(0, 12, 1) AS offs
+           ) d LEFT OUTER JOIN
+           hits
+           ON d.month = date_trunc('month', hits.created_at) AND hits.site_id = #{self.id}
+      GROUP BY d.month order by d.month;
+    SQL
+
+    return self.hits.find_by_sql(query)
+  end
+
   def self.tracking_id_regex
     return /\AZA-([[:digit:]]{6})-([[:digit:]]+)\z/
   end
