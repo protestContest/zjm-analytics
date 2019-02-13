@@ -23,7 +23,7 @@
     </div>
   </header>
 
-  <canvas id='hitChart'></canvas>
+  <canvas id='hitChart' class='chart'></canvas>
   <script>
     window.chartData = {
       day: {
@@ -54,8 +54,16 @@
       options: {
         legend: {
           display: false
+        },
+        scales: {
+          xAxes: [{
+            gridLines: {
+              display:false
+            }
+          }]
         }
       }
+
     });
 
     function selectFilter(filter) {
