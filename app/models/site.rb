@@ -13,7 +13,7 @@ class Site < ApplicationRecord
 
   def hits_by_day
     query = <<-SQL
-      SELECT d.day, count(hits.id) as num_hits
+      SELECT d.day, count(distinct hits.client_id) as num_hits
       FROM (SELECT date_trunc('day', (current_date - offs)) AS day
             FROM generate_series(0, 30, 1) AS offs
            ) d LEFT OUTER JOIN
@@ -27,7 +27,7 @@ class Site < ApplicationRecord
 
   def hits_by_week
     query = <<-SQL
-      SELECT d.week, count(hits.id) as num_hits
+      SELECT d.week, count(distinct hits.client_id) as num_hits
       FROM (SELECT date_trunc('week', (current_date - (7*offs))) AS week
             FROM generate_series(0, 12, 1) AS offs
            ) d LEFT OUTER JOIN
@@ -41,7 +41,7 @@ class Site < ApplicationRecord
 
   def hits_by_month
     query = <<-SQL
-      SELECT d.month, count(hits.id) as num_hits
+      SELECT d.month, count(distinct hits.client_id) as num_hits
       FROM (SELECT date_trunc('month', (current_date - (30*offs))) AS month
             FROM generate_series(0, 12, 1) AS offs
            ) d LEFT OUTER JOIN
