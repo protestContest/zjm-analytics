@@ -21,5 +21,6 @@
         <rect id="Rectangle" stroke="#333333" stroke-width="2" fill="#FDFDFD" fill-rule="nonzero" x="83" y="104" width="127" height="127"></rect>
         <circle id="Oval" stroke="#333333" stroke-width="2" fill="#FDFDFD" fill-rule="nonzero" cx="319.5" cy="157.5" r="73.5"></circle>
         <path d="M239,113.236068 L164.618034,262 L313.381966,262 L239,113.236068 Z" id="Triangle" stroke="#333333" stroke-width="2" fill="#FDFDFD" fill-rule="nonzero"></path>
+        <rect id="Rectangle-Copy" fill="#FDFDFD" fill-rule="nonzero" opacity="0.496000744" x="3" y="1" width="466" height="297" rx="21"></rect>
     </g>
 </svg>
