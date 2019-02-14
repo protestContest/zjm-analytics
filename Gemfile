@@ -23,7 +23,7 @@ gem 'pg'
 
 gem 'sidekiq'
 gem 'selenium-webdriver'
-gem 'aws-sdk'
+gem 'aws-sdk-s3'
 gem 'gravtastic'
 
 gem 'coffee-rails', '~> 4.2'

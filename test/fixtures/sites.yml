@@ -7,6 +7,7 @@
 one:
   id: 1
   name: 'Test Site'
+  url: 'http://example.com'
   user_id: 1
 
 two:
