@@ -25,9 +25,8 @@ class SitesController < ApplicationController
   def create
     @site = current_user.sites.build(site_params)
 
-    ScreenshotJob.perform_later @site
-
     if @site.save
+      ScreenshotJob.perform_later @site
       redirect_to @site, notice: 'Site was successfully created.'
     else
       render :new
