@@ -22,6 +22,7 @@ gem 'devise'
 gem 'pg'
 
 gem 'sidekiq'
+gem 'selenium-webdriver'
 
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
