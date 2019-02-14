@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     activator.addEventListener('click', (event) => {
       let targetSelectors = activator.dataset.jsToggle.split(',');
       targetSelectors.forEach(targetSelector => {
-        console.log(targetSelector);
         let targetEl = (targetSelector === '&') ? activator : document.querySelector(targetSelector);
         if (targetEl) {
           targetEl.classList.toggle('_active');
