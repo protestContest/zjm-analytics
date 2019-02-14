@@ -1,9 +1,11 @@
+@import '../shared/colors';
+
 .header {
   width: 100%;
   height: 50px;
   flex: 0 0 50px;
-  background: #fafafa;
-  border-bottom: 2px solid #ccc;
+  background: $c-less-white;
+  border-bottom: 2px solid $c-light-gray;
   display: flex;
   align-items: center;
   margin-bottom: 50px;
@@ -16,9 +18,7 @@
 }
 
 .header .header__logo {
-  height: 28px;
-  position: relative;
-  top: 4px;
+  height: 36px;
 }
 .header .header__title {
   font-size: 16px;

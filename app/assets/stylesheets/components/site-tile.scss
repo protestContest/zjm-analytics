@@ -5,15 +5,18 @@
 
 .site-tile .site-tile__img {
   height: 230px;
+  width: 100%;
   background-color: #ECECEC;
   margin-bottom: 10px;
 }
 
 .site-tile .site-tile__title {
+  display: block;
   font-size: 16px;
 }
 
 .site-tile .site-tile__subtitle {
+  display: block;
   font-size: 12px;
   font-style: italic;
 }

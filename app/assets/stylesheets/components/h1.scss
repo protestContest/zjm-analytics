@@ -6,12 +6,21 @@
 }
 
 .h2 {
-  font-size: 24px;
-  font-weight: normal;
+  font-size: 26px;
+  font-weight: 600;
   margin-bottom: 28px;
   margin-top: 0;
 }
 
+.subtitle {
+  font-size: 20px;
+  font-weight: normal;
+  margin: 0;
+}
+
+hgroup {
+  margin-bottom: 32px;
+}
 hgroup .h1 {
   margin-bottom: 0;
 }

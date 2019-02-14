@@ -9,7 +9,9 @@ class SitesController < ApplicationController
   def show
     @num_hits = @site.hits.length
     @hits = {
-      by_day: @site.hits_by_day
+      by_day: @site.hits_by_day,
+      by_week: @site.hits_by_week,
+      by_month: @site.hits_by_month
     }
   end
 

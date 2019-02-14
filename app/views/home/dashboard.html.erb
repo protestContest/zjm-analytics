@@ -8,11 +8,22 @@
 <ul class='grid-list grid-list--3'>
   <% @sites.each do |site| %>
     <li class='grid-list__item'>
-      <%= link_to site, class: 'site-tile' do %>
-        <img class='site-tile__img' src='<%= site.screenshot_url %>' />
-        <div class='site-tile__title'><%= site.name %></div>
-        <div class='site-tile__subtitle'><%= site.url %></div>
-      <% end %>
+      <div class='site-tile'>
+        <%= link_to site do %>
+          <img class='site-tile__img' src='<%= site.screenshot_url %>' />
+        <% end %>
+        <div class='flex-view'>
+          <div>
+            <%= link_to site.name, site, class: 'site-tile__title' %>
+            <%= link_to site.url, site, class: 'site-tile__subtitle' %>
+          </div>
+          <% if site.url? %>
+            <%= link_to site.url, target: '_blank', class: 'flex-view__pull-right' do %>
+              <%= image_tag 'external.png', size: 16 %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
     </li>
   <% end %>
 </ul>

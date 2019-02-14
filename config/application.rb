@@ -13,6 +13,7 @@ module ZjmAnalytics
 
     config.active_job.queue_adapter = :sidekiq
     config.generators.javascript_engine = :js
+    config.assets.precompile += %w( '.svg' )
 
     config.screenshots_url = "http://screenshot.zjm.me:4444/wd/hub"
     config.screenshots_bucket = "analytics-site-screenshots"
