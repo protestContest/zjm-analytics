@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="474px" height="305px" viewBox="0 0 474 305" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53 (72520) - https://sketchapp.com -->
+    <title>Site Icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="3" y="1" width="466" height="297" rx="21"></rect>
+        <filter x="-1.4%" y="-1.5%" width="103.2%" height="105.1%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="1" dy="3" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.268247378 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Site-Icon" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Rectangle" fill-rule="nonzero">
+            <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+            <rect stroke="#333333" stroke-width="2" stroke-linejoin="square" fill="#FDFDFD" fill-rule="evenodd" x="4" y="2" width="464" height="295" rx="21"></rect>
+        </g>
+        <path d="M3,43.5 L469,43.5" id="Line-4" stroke="#333333" stroke-width="2" fill-rule="nonzero"></path>
+        <rect id="Rectangle" stroke="#333333" stroke-width="2" fill="#FDFDFD" fill-rule="nonzero" x="83" y="104" width="127" height="127"></rect>
+        <circle id="Oval" stroke="#333333" stroke-width="2" fill="#FDFDFD" fill-rule="nonzero" cx="319.5" cy="157.5" r="73.5"></circle>
+        <path d="M239,113.236068 L164.618034,262 L313.381966,262 L239,113.236068 Z" id="Triangle" stroke="#333333" stroke-width="2" fill="#FDFDFD" fill-rule="nonzero"></path>
+    </g>
+</svg>
