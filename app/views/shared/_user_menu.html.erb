@@ -1,3 +1,9 @@
-<%= link_to current_user, class: 'site-nav__item', data: { jsToggle: '#userMenu' } do %>
-  <%= image_tag current_user.gravatar_url, class: 'site-nav__user-icon' %>
-<% end %>
+<div class='site-nav__item button-menu'>
+  <div class='button-menu__button' data-js-toggle='&,#userMenu'>
+    <%= image_tag current_user.gravatar_url, class: 'site-nav__user-icon' %>
+  </div>
+  <div class='button-menu__menu' id='userMenu'>
+    <%= link_to 'Edit profile', edit_user_registration_path, class: 'button-menu__item' %>
+    <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'button-menu__item' %>
+  </div>
+</div>
