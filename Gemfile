@@ -22,6 +22,7 @@ gem 'devise'
 gem 'pg'
 
 gem 'sidekiq'
+gem 'redis'
 gem 'selenium-webdriver'
 gem 'aws-sdk-s3'
 gem 'gravtastic'
@@ -46,7 +47,7 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'guard'
   gem 'guard-minitest'
-  gem 'selenium-webdriver'
+  # gem 'selenium-webdriver'
   gem 'rails-controller-testing'
 end
 
