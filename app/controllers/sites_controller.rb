@@ -25,6 +25,8 @@ class SitesController < ApplicationController
   def create
     @site = current_user.sites.build(site_params)
 
+    ScreenshotJob.perform_later @site
+
     if @site.save
       redirect_to @site, notice: 'Site was successfully created.'
     else
@@ -35,6 +37,8 @@ class SitesController < ApplicationController
   def update
     respond_to do |format|
       if @site.update(site_params)
+        ScreenshotJob.perform_later @site
+
         format.html { redirect_to @site, notice: 'Site was successfully updated.' }
         format.json { render :show, status: :ok, location: @site }
       else
