@@ -1,6 +1,6 @@
 <h1>Editing Account</h1>
 
-<%= render 'form', account: @account %>
+<%= render 'form', account: @account, owner: @account.owner %>
 
-<%= link_to 'Show', @account %> |
-<%= link_to 'Back', accounts_path %>
+<%= link_to 'Show', [@account.owner, @account] %> |
+<%= link_to 'Back', user_accounts_path(current_user) %>

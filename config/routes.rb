@@ -13,7 +13,8 @@ Rails.application.routes.draw do
     end
 
     resources :sites
-    resources :accounts
-    resources :users, only: [:show]
+    resources :users, only: [:show] do
+      resources :accounts
+    end
   end
 end
