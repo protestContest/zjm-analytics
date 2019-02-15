@@ -17,7 +17,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "creating a user also creates an owned account" do
-    user = User.new(email: 'newuser@example.com', password: 'password')
+    user = User.new(email: 'newuser@example.com', password: 'password', confirmed_at: DateTime.now)
     user.save
 
     assert_equal 1, user.owned_accounts.size
