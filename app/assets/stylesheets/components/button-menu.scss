@@ -3,49 +3,44 @@
 
 .button-menu {
   position: relative;
-}
 
-.button-menu .button-menu__button {
-  display: block;
-  height: $d-header-height;
-  width: $d-header-height;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-
-  &:hover {
-    background: $c-least-white;
+  .button-menu__button {
+    display: block;
+    height: $d-header-height;
+    width: $d-header-height;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  &._active {
-    background: $c-least-white;
+  &:hover .button-menu__button {
+    background: $c-light-gray;
   }
-}
 
-.button-menu .button-menu__menu {
-  position: absolute;
-  display: none;
-  top: 100%;
-  right: 0px;
-  width: 150px;
-  background: $c-less-white;
-  border: 1px solid $c-light-gray;
-  margin-top: 1px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-  border-radius: 1px;
+  .button-menu__menu {
+    position: absolute;
+    display: none;
+    top: 100%;
+    right: 0px;
+    width: 150px;
+    background: $c-less-white;
+    border: 1px solid $c-light-gray;
+    margin-top: 1px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    border-radius: 1px;
+  }
 
-  &._active {
+  &:hover .button-menu__menu {
     display: block;
   }
-}
 
-.button-menu .button-menu__item {
-  display: block;
-  padding: 10px;
-  font-size: 14px;
+  .button-menu__item {
+    display: block;
+    padding: 10px;
+    font-size: 14px;
 
-  &:hover {
-    background: $c-least-white;
+    &:hover {
+      background: $c-least-white;
+    }
   }
 }
