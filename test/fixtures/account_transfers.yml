@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  account: one
+  original_owner: one
+  target_owner: one
+  response: MyString
+  responded_at: 2019-02-15 11:07:34
+  response_token: MyString
+
+two:
+  account: two
+  original_owner: two
+  target_owner: two
+  response: MyString
+  responded_at: 2019-02-15 11:07:34
+  response_token: MyString
