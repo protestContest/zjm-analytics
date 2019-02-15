@@ -3,6 +3,7 @@ class User < ApplicationRecord
   gravtastic
 
   has_many :sites, dependent: :destroy
+  has_and_belongs_to_many :accounts
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
