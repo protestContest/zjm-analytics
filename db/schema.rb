@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190208233053) do
+ActiveRecord::Schema.define(version: 20190215005539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
+    t.bigint "owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_id"], name: "index_accounts_on_owner_id"
+  end
 
   create_table "hits", force: :cascade do |t|
     t.string "hit_type"
@@ -54,6 +61,7 @@ ActiveRecord::Schema.define(version: 20190208233053) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "accounts", "users", column: "owner_id"
   add_foreign_key "hits", "sites"
   add_foreign_key "sites", "users"
 end
