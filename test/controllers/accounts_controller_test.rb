@@ -9,6 +9,24 @@ class AccountsControllerTest < ActionDispatch::IntegrationTest
     @other_account = accounts(:two)
   end
 
+  test "should get index when logged in" do
+    sign_in @user
+    get user_accounts_url @user
+    assert_response :success
+  end
+
+  test "should not get index when not logged in" do
+    get user_accounts_url @user
+    assert_redirected_to new_user_session_url
+  end
+
+  test "should not get index for different user" do
+    other_user = users(:fred)
+    sign_in other_user
+    get user_accounts_url @user
+    assert_response :forbidden
+  end
+
   test "should get new when logged in" do
     sign_in @user
     get new_user_account_url @user

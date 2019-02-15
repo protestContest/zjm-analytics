@@ -3,6 +3,11 @@ class AccountsController < ApplicationController
   before_action :user_has_account!, only: [:show]
   before_action :user_owns_account!, only: [:edit, :update, :destroy]
   before_action :not_users_last_account!, only: [:destroy]
+  before_action :current_users_accounts!, only: [:index]
+
+  def index
+    @accounts = User.find(params[:user_id]).owned_accounts
+  end
 
   # GET /accounts/1
   # GET /accounts/1.json
@@ -85,6 +90,13 @@ class AccountsController < ApplicationController
     def not_users_last_account!
       if @account.owner.owned_accounts.size == 1
         render 'shared/error', notice: 'You cant\'t delete your last account', status: :forbidden
+      end
+    end
+
+    def current_users_accounts!
+      user = User.find(params[:user_id])
+      if user != current_user
+        render 'shared/error', notice: 'You cant\'t see that', status: :forbidden
       end
     end
 end
