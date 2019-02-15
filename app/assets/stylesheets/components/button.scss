@@ -13,33 +13,29 @@
   cursor: pointer;
   font-family: inherit;
   transition: background-color 200ms, color 200ms;
-}
 
-.button:visited {
-  color: inherit;
-}
+  &:visited {
+    color: inherit;
+  }
 
-.button:hover {
-  background-color: $c-least-white;
-}
+  &:hover {
+    background-color: $c-least-white;
+  }
 
-.button:active {
+  &.button--danger {
+    border: 1px solid $c-danger;
+    color: $c-danger;
+    background-color: $c-white;
+  }
 
-}
+  &.button--danger:hover {
+    background-color: $c-danger;
+    color: $c-white;
+  }
 
-.button.button--danger {
-  border: 1px solid $c-danger;
-  color: $c-danger;
-  background-color: $c-white;
-}
-
-.button.button--danger:hover {
-  background-color: $c-danger;
-  color: $c-white;
-}
-
-.button[disabled] {
-  color: $c-dark-gray;
-  border-color: $c-dark-gray;
-  background-color: $c-least-white;
+  &[disabled] {
+    color: $c-dark-gray;
+    border-color: $c-dark-gray;
+    background-color: $c-least-white;
+  }
 }

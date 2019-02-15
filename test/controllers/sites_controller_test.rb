@@ -2,6 +2,7 @@ require 'test_helper'
 
 class SitesControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
+  include ActiveJob::TestHelper
 
   test "logged in user can see owned site" do
     user = users(:zack)
@@ -109,6 +110,42 @@ class SitesControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_response :forbidden
+  end
+
+  test "creating a site with a url starts a screenshot job" do
+    assert_enqueued_with(job: ScreenshotJob) do
+      user = users(:zack)
+      sign_in user
+      post sites_url, params: { site: { name: 'New Site', url: 'http://example.com' } }
+    end
+  end
+
+  test "creating a site without a url does not start a screenshot job" do
+    user = users(:zack)
+    sign_in user
+    post sites_url, params: { site: { name: 'New Site', url: '' } }
+    assert_no_enqueued_jobs
+  end
+
+  test "updating a site with a url starts a screenshot job" do
+    assert_enqueued_with(job: ScreenshotJob) do
+      user = users(:zack)
+      site = sites(:one)
+      assert_equal user, site.user
+      sign_in user
+
+      patch site_url(site), params: { site: { name: 'Renamed Site', url: 'http://example.com' } }
+    end
+  end
+
+  test "updating a site without a url does not start a screenshot job" do
+    user = users(:zack)
+    site = sites(:one)
+    assert_equal user, site.user
+    sign_in user
+
+    patch site_url(site), params: { site: { name: 'Renamed Site', url: '' } }
+    assert_no_enqueued_jobs
   end
 
 end
