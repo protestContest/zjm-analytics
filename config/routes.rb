@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     end
 
     resources :sites
+    resources :account_transfers
     resources :users, only: [:show] do
       resources :accounts
     end
