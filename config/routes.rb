@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :accounts
   get '/track', to: 'hits#track', as: 'tracking'
 
   devise_for :users
@@ -14,6 +13,7 @@ Rails.application.routes.draw do
     end
 
     resources :sites
+    resources :accounts
     resources :users, only: [:show]
   end
 end

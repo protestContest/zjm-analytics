@@ -7,3 +7,7 @@ one:
 two:
   name: 'Account 2'
   owner_id: 2
+
+three:
+  name: 'Account 3'
+  owner_id: 3

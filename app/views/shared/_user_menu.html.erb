@@ -3,6 +3,7 @@
     <%= image_tag current_user.gravatar_url, class: 'site-nav__user-icon' %>
   </div>
   <div class='button-menu__menu' id='userMenu'>
+    <%= link_to current_account.name, account_path(current_account), class: 'button-menu__item' %>
     <%= link_to 'Edit profile', edit_user_registration_path, class: 'button-menu__item' %>
     <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'button-menu__item' %>
   </div>
