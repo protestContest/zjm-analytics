@@ -23,6 +23,14 @@ class UserTest < ActiveSupport::TestCase
     assert_equal 1, user.owned_accounts.size
   end
 
+  test "destroying a user also destroys its owned accounts" do
+    user = users(:zack)
+    owned_account = user.owned_accounts.first
+    user.destroy
+
+    assert_not Account.exists? owned_account.id
+  end
+
   test "has_account is true for owned accounts and accounts user is a member of" do
     user = users(:zack)
     owned_account = user.owned_accounts.first

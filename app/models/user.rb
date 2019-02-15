@@ -3,7 +3,7 @@ class User < ApplicationRecord
   gravtastic
 
   has_many :sites, dependent: :destroy
-  has_many :owned_accounts, class_name: 'Account', foreign_key: 'owner_id'
+  has_many :owned_accounts, class_name: 'Account', foreign_key: 'owner_id', dependent: :destroy
   has_and_belongs_to_many :accounts
 
   after_create :create_default_owned_account
