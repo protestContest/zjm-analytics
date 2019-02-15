@@ -1,11 +1,7 @@
 class AccountsController < ApplicationController
   before_action :set_account, only: [:show, :edit, :update, :destroy]
-
-  # GET /accounts
-  # GET /accounts.json
-  def index
-    @accounts = Account.all
-  end
+  before_action :user_has_account!, only: [:show]
+  before_action :user_owns_account!, only: [:edit, :update, :destroy]
 
   # GET /accounts/1
   # GET /accounts/1.json
@@ -25,6 +21,7 @@ class AccountsController < ApplicationController
   # POST /accounts.json
   def create
     @account = Account.new(account_params)
+    @account.owner_id = current_user.id
 
     respond_to do |format|
       if @account.save
@@ -69,6 +66,18 @@ class AccountsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
-      params.require(:account).permit(:owner_id)
+      params.require(:account).permit(:name)
+    end
+
+    def user_has_account!
+      if current_user != @account.owner && !@account.users.include?(current_user)
+        render 'shared/error', notice: 'You don\'t belong to that account', status: :forbidden
+      end
+    end
+
+    def user_owns_account!
+      if current_user != @account.owner
+        render 'shared/error', notice: 'You don\'t own that account', status: :forbidden
+      end
     end
 end

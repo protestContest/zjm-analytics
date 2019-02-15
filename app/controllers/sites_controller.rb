@@ -1,6 +1,6 @@
 class SitesController < ApplicationController
   before_action :set_site, only: [:show, :edit, :update, :destroy]
-  before_action :user_owns_site, only: [:show, :edit, :update, :destroy]
+  before_action :user_owns_site!, only: [:show, :edit, :update, :destroy]
 
   def index
     redirect_to dashboard_url
@@ -61,7 +61,7 @@ class SitesController < ApplicationController
       params.require(:site).permit(:name, :url)
     end
 
-    def user_owns_site
+    def user_owns_site!
       if @site.user != current_user
         render 'shared/error', notice: 'You don\'t own that site', status: :forbidden
       end
