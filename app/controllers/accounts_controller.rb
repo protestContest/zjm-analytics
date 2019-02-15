@@ -2,6 +2,7 @@ class AccountsController < ApplicationController
   before_action :set_account, only: [:show, :edit, :update, :destroy]
   before_action :user_has_account!, only: [:show]
   before_action :user_owns_account!, only: [:edit, :update, :destroy]
+  before_action :not_users_last_account!, only: [:destroy]
 
   # GET /accounts/1
   # GET /accounts/1.json
@@ -78,6 +79,12 @@ class AccountsController < ApplicationController
     def user_owns_account!
       if current_user != @account.owner
         render 'shared/error', notice: 'You don\'t own that account', status: :forbidden
+      end
+    end
+
+    def not_users_last_account!
+      if @account.owner.owned_accounts.size == 1
+        render 'shared/error', notice: 'You cant\'t delete your last account', status: :forbidden
       end
     end
 end

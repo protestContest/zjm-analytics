@@ -127,4 +127,17 @@ class AccountsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :forbidden
   end
+
+  test "should not allow user to destroy last owned account" do
+    user = users(:fred)
+    account = user.owned_accounts.first
+
+    assert_equal 1, user.owned_accounts.size
+    sign_in user
+    assert_no_difference('Account.count') do
+      delete user_account_url(user, account)
+    end
+
+    assert_response :forbidden
+  end
 end
