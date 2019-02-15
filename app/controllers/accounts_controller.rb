@@ -70,7 +70,7 @@ class AccountsController < ApplicationController
     end
 
     def user_has_account!
-      if current_user != @account.owner && !@account.users.include?(current_user)
+      if !current_user.has_account @account
         render 'shared/error', notice: 'You don\'t belong to that account', status: :forbidden
       end
     end
