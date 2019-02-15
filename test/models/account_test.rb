@@ -14,4 +14,17 @@ class AccountTest < ActiveSupport::TestCase
     @account.name = "    "
     assert_not @account.valid?
   end
+
+  test "name should be unique for a user" do
+    dup_account = @account.dup
+    @account.save
+    assert_not dup_account.valid?
+  end
+
+  test "name can be reused for different users" do
+    fred = users(:fred)
+    fred_account = fred.owned_accounts.build(name: @account.name)
+    @account.save
+    assert fred_account.valid?
+  end
 end
