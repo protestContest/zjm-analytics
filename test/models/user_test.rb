@@ -15,4 +15,11 @@ class UserTest < ActiveSupport::TestCase
     @user.password = "asdfasdf"
     assert @user.valid?
   end
+
+  test "creating a user also creates an account" do
+    user = User.new(email: 'newuser@example.com', password: 'password')
+    user.save
+
+    assert_equal 1, user.accounts.size
+  end
 end
