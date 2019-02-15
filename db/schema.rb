@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190215195308) do
+ActiveRecord::Schema.define(version: 20190215203645) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20190215195308) do
   create_table "account_transfers", force: :cascade do |t|
     t.bigint "account_id"
     t.bigint "original_owner_id"
-    t.bigint "target_owner_id"
+    t.string "target_owner"
     t.integer "response", default: 0
     t.datetime "responded_at"
     t.string "response_token"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20190215195308) do
     t.index ["account_id"], name: "index_account_transfers_on_account_id"
     t.index ["original_owner_id"], name: "index_account_transfers_on_original_owner_id"
     t.index ["response_token"], name: "index_account_transfers_on_response_token"
-    t.index ["target_owner_id"], name: "index_account_transfers_on_target_owner_id"
+    t.index ["target_owner"], name: "index_account_transfers_on_target_owner"
   end
 
   create_table "accounts", force: :cascade do |t|
@@ -91,7 +91,6 @@ ActiveRecord::Schema.define(version: 20190215195308) do
 
   add_foreign_key "account_transfers", "accounts"
   add_foreign_key "account_transfers", "users", column: "original_owner_id"
-  add_foreign_key "account_transfers", "users", column: "target_owner_id"
   add_foreign_key "accounts", "users", column: "owner_id"
   add_foreign_key "hits", "sites"
   add_foreign_key "sites", "users"

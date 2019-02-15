@@ -6,7 +6,6 @@ class User < ApplicationRecord
   has_many :owned_accounts, class_name: 'Account', foreign_key: 'owner_id', dependent: :destroy
   has_and_belongs_to_many :accounts
   has_many :account_transfer_requests, class_name: 'AccountTransfer', foreign_key: 'original_owner', dependent: :destroy
-  has_many :account_transfer_responses, class_name: 'AccountTransfer', foreign_key: 'target_owner', dependent: :destroy
 
   after_create :create_default_owned_account
 

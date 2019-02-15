@@ -5,7 +5,7 @@ class AccountTransferTest < ActiveSupport::TestCase
     @user = users(:zack)
     @other_user = users(:fred)
     @account = @user.owned_accounts.first
-    @transfer = AccountTransfer.new(account: @account, original_owner: @user, target_owner: @other_user)
+    @transfer = AccountTransfer.new(account: @account, original_owner: @user, target_owner: @other_user.email)
   end
 
   test "should be valid" do

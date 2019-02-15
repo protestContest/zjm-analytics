@@ -3,7 +3,7 @@
 one:
   account: one
   original_owner: one
-  target_owner: one
+  target_owner: 'test@example.com'
   response: MyString
   responded_at: 2019-02-15 11:07:34
   response_token: MyString
@@ -11,7 +11,7 @@ one:
 two:
   account: two
   original_owner: two
-  target_owner: two
+  target_owner: 'test@example.com'
   response: MyString
   responded_at: 2019-02-15 11:07:34
   response_token: MyString

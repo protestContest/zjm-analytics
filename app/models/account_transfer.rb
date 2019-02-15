@@ -2,7 +2,6 @@ class AccountTransfer < ApplicationRecord
   enum response: [:pending, :accepted, :rejected]
   belongs_to :account
   belongs_to :original_owner, class_name: 'User'
-  belongs_to :target_owner, class_name: 'User'
 
   before_create :create_response_token
 
