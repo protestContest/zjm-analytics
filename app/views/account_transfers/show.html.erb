@@ -1,7 +1,9 @@
-<p>
-  <strong>Owner:</strong>
-  <%= @transfer.original_owner %>
-</p>
+<h1 class='h1'>Transfer request for <%= @transfer.account.name %></h1>
+<section class='section'>
+  <% if @transfer.original_owner == current_user %>
+    <%= link_to 'Cancel transfer', @transfer, method: :delete, class: 'button' %>
+  <% end %>
+</section>
 
 <%= link_to 'Edit', edit_account_transfer_path(@transfer) %> |
 <%= link_to 'Back', user_accounts_path(current_user) %>
