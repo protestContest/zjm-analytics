@@ -17,3 +17,13 @@ $c-less-white: #fafafa;
 $c-least-white: #eee;
 
 $c-danger: #ed0000;
+
+$c-light-gradient: linear-gradient(#f9f9f9, #f4f4f4);
+$c-dim-gradient: linear-gradient(#f4f4f4, #f0f0f0);
+$c-dimmer-gradient-inverse: linear-gradient(#f0f0f0, #f9f9f9);
+$c-white-gradient: linear-gradient(#fdfdfd, #f0f0f0);
+$c-white-gradient-reverse: linear-gradient(#f0f0f0, #fdfdfd);
+$c-dark-gradient: linear-gradient(#444444, #222222);
+$c-dark-gradient-reverse: linear-gradient(#333333, #555555);
+$c-danger-gradient: linear-gradient(#F96464, #D96262);
+$c-danger-gradient-inverse: linear-gradient(#D96262, #F96464);

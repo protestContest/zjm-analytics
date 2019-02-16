@@ -2,33 +2,34 @@
 
 .tab-list {
   display: flex;
-}
 
-.tab-list .tab-list__tab {
-  border: 1px solid $c-black;
-  flex: 1 0 100px;
-  min-width: 100px;
-  height: 30px;
-  text-align: center;
-  line-height: 30px;
-  font-size: 16px;
-  font-weight: 700;
-  text-transform: uppercase;
-  margin-right: -1px;
-  cursor: pointer;
-}
+  .tab-list__tab {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background: $c-light-gradient;
+    flex: 1 0 100px;
+    min-width: 100px;
+    height: 30px;
+    text-align: center;
+    line-height: 28px;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-right: -1px;
+    cursor: pointer;
+  }
 
-.tab-list .tab-list__tab:first-child {
-  border-radius: 3px 0 0 3px;
-}
+  .tab-list__tab:first-child {
+    border-radius: 3px 0 0 3px;
+  }
 
-.tab-list .tab-list__tab:last-child {
-  margin-right: 0;
-  border-radius: 0 3px 3px 0;
-}
+  .tab-list__tab:last-child {
+    margin-right: 0;
+    border-radius: 0 3px 3px 0;
+  }
 
-.tab-list .tab-list__tab._active {
-  background: $c-black;
-  color: $c-white;
-}
+  .tab-list__tab._active {
+    background: $c-dark-gradient-reverse;
+    color: $c-white;
+  }
 
+}

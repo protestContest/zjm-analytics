@@ -10,7 +10,9 @@
     <li class='grid-list__item'>
       <div class='site-tile'>
         <%= link_to site do %>
-          <img class='site-tile__img' src='<%= site.screenshot_url %>' />
+          <div class='site-tile__img-wrapper'>
+            <img class='site-tile__img' data-js-fallback-img='<%= image_path('no-site.svg') %>' src='<%= site.screenshot_url %>' />
+          </div>
         <% end %>
         <div class='flex-view'>
           <div>

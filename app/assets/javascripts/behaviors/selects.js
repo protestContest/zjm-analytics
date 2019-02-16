@@ -7,7 +7,7 @@
  *
  * `data-js-selects='.categoryElements,#elementToActivate'
  */
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('turbolinks:load', () => {
   let activators = document.querySelectorAll('[data-js-selects]');
   activators.forEach(activator => {
 

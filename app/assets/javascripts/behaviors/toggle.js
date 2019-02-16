@@ -7,7 +7,7 @@
  *
  * `data-js-toggle='&,.boxDetail,#menu'`
  */
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('turbolinks:load', () => {
   let activators = document.querySelectorAll('[data-js-toggle]');
   activators.forEach(activator => {
 
