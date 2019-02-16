@@ -3,6 +3,9 @@
 <div class='col-4 offset-4'>
   <%= render 'form', account: @account, owner: @account.owner %>
 
+  <h3>Transfer ownership</h3>
+  <%= render 'account_transfers/form', transfer: @account_transfer %>
+
   <%= link_to 'Show', [@account.owner, @account] %> |
   <%= link_to 'Back', user_accounts_path(current_user) %>
 </div>

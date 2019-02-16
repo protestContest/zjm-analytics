@@ -31,7 +31,7 @@ class AccountTransfersControllerTest < ActionDispatch::IntegrationTest
       } }
     end
 
-    assert_redirected_to account_transfer_url(AccountTransfer.last)
+    assert_redirected_to user_account_url(@user, @account)
   end
 
   test "should not create a transfer for last owned account" do

@@ -13,8 +13,8 @@ class AccountTransfersController < ApplicationController
 
     respond_to do |format|
       if @transfer.save
-        format.html { redirect_to @transfer, notice: 'Account transfer was successfully requested.' }
-        format.json { render :show, status: :created, location: @transfer }
+        format.html { redirect_to [current_user, @transfer.account], notice: 'Account transfer was successfully requested.' }
+        format.json { render :show, status: :created, location: [current_user, @transfer.account] }
       else
         format.html { render :new }
         format.json { render json: @transfer.errors, status: :unprocessable_entity }

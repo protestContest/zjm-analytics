@@ -12,6 +12,7 @@ class AccountsController < ApplicationController
   # GET /accounts/1
   # GET /accounts/1.json
   def show
+    @account_transfer = AccountTransfer.where(account: @account, response: 'pending').first
   end
 
   # GET /accounts/new
@@ -21,6 +22,7 @@ class AccountsController < ApplicationController
 
   # GET /accounts/1/edit
   def edit
+    @account_transfer = AccountTransfer.new(account: @account)
   end
 
   # POST /accounts

@@ -1,5 +1,9 @@
 <h1 class='h1'><%= @account.name %></h1>
 <p class='info'>Managed by <%= @account.owner.email %></p>
 
+<% if !@account_transfer.nil? %>
+  <p class='info'>This account is pending transfer to <%= @account_transfer.target_owner %></p>
+<% end %>
+
 <%= link_to 'Edit', edit_user_account_path(@account.owner, @account) %> |
 <%= link_to 'Back', user_accounts_path(current_user) %>
