@@ -1,7 +1,8 @@
 class AccountTransfersController < ApplicationController
   before_action :set_account_transfer, only: [:show, :edit, :update, :destroy]
-  before_action :user_owns_account, only: [:create]
-  before_action :user_initiated_transfer, only: [:show, :edit, :update, :destroy]
+  before_action :user_owns_account!, only: [:create]
+  before_action :not_users_last_account!, only: [:create]
+  before_action :user_initiated_transfer!, only: [:show, :edit, :update, :destroy]
 
   def new
     @transfer = AccountTransfer.new
@@ -64,16 +65,22 @@ class AccountTransfersController < ApplicationController
       }
     end
 
-    def user_owns_account
+    def user_owns_account!
       account = Account.find(params[:account_transfer][:account_id])
       if account.nil? || account.owner != current_user
         render 'shared/error', notice: 'You cant\'t transfer other accounts', status: :forbidden
       end
     end
 
-    def user_initiated_transfer
+    def user_initiated_transfer!
       if @transfer.original_owner != current_user
         render 'shared/error', notice: 'You cant\'t see that', status: :forbidden
+      end
+    end
+
+    def not_users_last_account!
+      if current_user.owned_accounts.size == 1
+        render 'shared/error', notice: 'You cant\'t transfer your only account', status: :forbidden
       end
     end
 end

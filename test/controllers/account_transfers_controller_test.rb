@@ -34,6 +34,19 @@ class AccountTransfersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to account_transfer_url(AccountTransfer.last)
   end
 
+  test "should not create a transfer for last owned account" do
+    assert_equal 1, @other_user.owned_accounts.size
+    sign_in @other_user
+    assert_no_difference('AccountTransfer.count') do
+      post account_transfers_url, params: { account_transfer: {
+        account_id: @other_user.owned_accounts.first.id,
+        target_owner: 'test@example.com'
+      } }
+    end
+
+    assert_response :forbidden
+  end
+
   test "should not create a transfer for owned account when not logged in" do
     assert_no_difference('AccountTransfer.count') do
       post account_transfers_url, params: { account_transfer: {
