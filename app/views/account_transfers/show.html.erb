@@ -1,9 +1,16 @@
 <h1 class='h1'>Transfer request for <%= @transfer.account.name %></h1>
-<section class='section'>
-  <% if @transfer.original_owner == current_user %>
+
+<% if @transfer.original_owner == current_user %>
+  <section class='section'>
     <%= link_to 'Cancel transfer', @transfer, method: :delete, class: 'button' %>
-  <% end %>
-</section>
+  </section>
+<% end %>
+
+<% if @is_responding %>
+  <section class='section'>
+
+  </section>
+<% end %>
 
 <%= link_to 'Edit', edit_account_transfer_path(@transfer) %> |
-<%= link_to 'Back', user_accounts_path(current_user) %>
+<%= link_to 'Back', :back %>

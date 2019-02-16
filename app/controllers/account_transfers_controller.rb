@@ -99,10 +99,13 @@ class AccountTransfersController < ApplicationController
     end
 
     def user_is_responding
-      if params[:action] == 'update' || params[:action] == 'edit'
-        return params[:response_token] == @transfer.response_token
+      @is_responding = false
+      if params[:action] == 'update' || params[:action] == 'show'
+        if params[:response_token] == @transfer.response_token
+          @is_responding = true
+        end
       end
 
-      return false
+      return @is_responding
     end
 end

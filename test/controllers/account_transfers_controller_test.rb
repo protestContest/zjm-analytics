@@ -120,8 +120,8 @@ class AccountTransfersControllerTest < ActionDispatch::IntegrationTest
     assert_response :forbidden
   end
 
-  test "should get edit when using the response token" do
-    get edit_account_transfer_url(@transfer, response_token: @transfer.response_token)
+  test "should get show when using the response token" do
+    get account_transfer_url(@transfer, response_token: @transfer.response_token)
     assert_response :success
   end
 

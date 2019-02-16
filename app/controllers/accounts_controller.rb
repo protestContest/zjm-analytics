@@ -22,7 +22,13 @@ class AccountsController < ApplicationController
 
   # GET /accounts/1/edit
   def edit
-    @account_transfer = AccountTransfer.new(account: @account)
+    @account_transfer = AccountTransfer.where(account: @account, response: 'pending').first
+    @pending_transfer = true
+
+    if @account_transfer.nil?
+      @account_transfer = AccountTransfer.new(account: @account)
+      @pending_transfer = false
+    end
   end
 
   # POST /accounts

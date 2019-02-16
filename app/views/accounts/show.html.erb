@@ -2,7 +2,7 @@
 <p class='info'>Managed by <%= @account.owner.email %></p>
 
 <% if !@account_transfer.nil? %>
-  <p class='info'>This account is <%= link_to 'pending transfer', @account_transfer %> to <%= @account_transfer.target_owner %></p>
+  <p class='info'>This account is <%= link_to 'pending transfer', @account_transfer, class: 't-link' %> to <%= @account_transfer.target_owner %></p>
 <% end %>
 
 <%= link_to 'Edit', edit_user_account_path(@account.owner, @account) %> |
