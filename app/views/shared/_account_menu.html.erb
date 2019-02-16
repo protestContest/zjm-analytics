@@ -1,0 +1,17 @@
+<div class='site-nav__item button-menu'>
+  <div class='button-menu__button' data-js-toggle='&,#userMenu'>
+    <%= current_account.name %>
+  </div>
+  <div class='button-menu__popup'>
+    <div class='button-menu__menu' id='userMenu'>
+      <div class='button-menu__title'>Switch account</div>
+      <% current_user.all_accounts.each do |account| %>
+        <div class='button-menu__item'>
+          <%= account.name %>
+        </div>
+      <% end %>
+      <hr class='button-menu__divider' />
+      <%= link_to 'New account...', new_user_account_path(current_user), class: 'button-menu__item' %>
+    </div>
+  </div>
+</div>

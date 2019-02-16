@@ -16,6 +16,7 @@
       <div class='header__title'><a href='/'><%= image_tag('logo.svg', class: 'header__logo', height: 36) %></a></div>
       <nav class='site-nav'>
         <% if user_signed_in? %>
+          <%= render partial: 'shared/account_menu' %>
           <%= render partial: 'shared/user_menu' %>
         <% else %>
           <%= link_to "Sign up", new_user_registration_path, class: 'site-nav__item' %>

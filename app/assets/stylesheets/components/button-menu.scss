@@ -1,5 +1,6 @@
 @import '../shared/colors';
 @import '../shared/dimensions';
+@import '../mixins';
 
 .button-menu {
   position: relative;
@@ -7,31 +8,55 @@
   .button-menu__button {
     display: block;
     height: $d-header-height;
-    width: $d-header-height;
+    min-width: $d-header-height;
+    padding: 0 10px;
     display: flex;
     align-items: center;
     justify-content: center;
+    color: $c-dark-gray;
+    font-size: 14px;
   }
 
   &:hover .button-menu__button {
     background: $c-light-gray;
   }
 
-  .button-menu__menu {
+  .button-menu__popup {
     position: absolute;
     display: none;
-    top: 100%;
+    top: 0px;
     right: 0px;
     width: 150px;
+  }
+
+  .button-menu__popup::before {
+    content: '';
+    display: block;
+    height: $d-header-height;
+    width: 100%;
+  }
+
+  .button-menu__menu {
+    position: relative;
+    top: 1px;
     background: $c-less-white;
     border: 1px solid $c-light-gray;
-    margin-top: 1px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
     border-radius: 1px;
   }
 
-  &:hover .button-menu__menu {
+  &:hover .button-menu__popup {
     display: block;
+  }
+
+  .button-menu__title {
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: $c-gray;
+    text-align: center;
+    margin: 5px 0;
+    @include user-select(none);
   }
 
   .button-menu__item {
@@ -42,5 +67,10 @@
     &:hover {
       background: $c-least-white;
     }
+  }
+
+  .button-menu__divider {
+    border: 0;
+    border-bottom: 1px solid $c-light-gray;
   }
 }

@@ -1,0 +1,6 @@
+@mixin user-select($select) {
+  @each $pre in -webkit-, -moz-, -ms-, -o- {
+    #{$pre + user-select}: #{$select};
+  }
+  #{user-select}: #{$select};
+}
