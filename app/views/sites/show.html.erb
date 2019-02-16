@@ -3,7 +3,7 @@
     <h1 class='h1'><%= @site.name %></h1>
     <% if @site.url? %>
       <h2 class='subtitle'>
-        <%= @site.url %>
+        <%= link_to @site.url, @site.url, target: '_blank' %>
         <%= link_to @site.url, target: '_blank', class: 'icon-inline' do %>
           <%= image_tag 'external.png', size: 16 %>
         <% end %>
