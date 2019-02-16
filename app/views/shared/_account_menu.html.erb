@@ -6,12 +6,11 @@
     <div class='button-menu__menu' id='userMenu'>
       <div class='button-menu__title'>Switch account</div>
       <% current_user.all_accounts.each do |account| %>
-        <div class='button-menu__item'>
-          <%= account.name %>
-        </div>
+        <%= link_to account.name, [account.owner, account], class: 'button-menu__item' %>
       <% end %>
       <hr class='button-menu__divider' />
-      <%= link_to 'New account...', new_user_account_path(current_user), class: 'button-menu__item' %>
+      <%= link_to 'All accounts', user_accounts_path(current_user), class: 'button-menu__item' %>
+      <%= link_to 'New account', new_user_account_path(current_user), class: 'button-menu__item' %>
     </div>
   </div>
 </div>

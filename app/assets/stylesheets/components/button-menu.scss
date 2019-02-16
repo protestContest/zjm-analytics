@@ -24,7 +24,7 @@
   .button-menu__popup {
     position: absolute;
     display: none;
-    top: 0px;
+    top: 100%;
     right: 0px;
     width: 150px;
   }
@@ -32,13 +32,13 @@
   .button-menu__popup::before {
     content: '';
     display: block;
-    height: $d-header-height;
+    height: 1px;
     width: 100%;
   }
 
   .button-menu__menu {
     position: relative;
-    top: 1px;
+    // top: 1px;
     background: $c-less-white;
     border: 1px solid $c-light-gray;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
