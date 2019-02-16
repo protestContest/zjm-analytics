@@ -3,6 +3,7 @@
 .button {
   padding: 4px 12px;
   border: 1px solid rgba(0, 0, 0, 0.05);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
   color: $c-black;
   background: linear-gradient(#f9f9f9, #f4f4f4);
   box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.1);
@@ -29,13 +30,12 @@
   }
 
   &.button--danger {
-    border: 1px solid $c-danger;
-    color: $c-danger;
-    background-color: $c-white;
+    background: linear-gradient(#F96464, #D96262);
+    color: $c-white;
   }
 
-  &.button--danger:hover {
-    background-color: $c-danger;
+  &.button--danger:active {
+    background: linear-gradient(#D96262, #F96464);
     color: $c-white;
   }
 
