@@ -2,6 +2,7 @@ class AccountTransfersController < ApplicationController
   before_action :set_account_transfer, only: [:show, :edit, :update, :destroy]
   before_action :user_owns_account!, only: [:create]
   before_action :not_users_last_account!, only: [:create]
+  before_action :no_transfer_pending!, only: [:create]
   before_action :user_initiated_transfer!, only: [:show, :edit, :update, :destroy]
 
   def new
@@ -75,6 +76,14 @@ class AccountTransfersController < ApplicationController
     def user_initiated_transfer!
       if @transfer.original_owner != current_user
         render 'shared/error', notice: 'You cant\'t see that', status: :forbidden
+      end
+    end
+
+    def no_transfer_pending!
+      account = Account.find(params[:account_transfer][:account_id])
+      transfer = AccountTransfer.where(account: account, response: 'pending').first
+      if !transfer.nil?
+        render 'shared/error', notice: 'This account is already pending transfer', status: :forbidden
       end
     end
 

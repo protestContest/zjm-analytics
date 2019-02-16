@@ -7,6 +7,7 @@ class AccountTransfersControllerTest < ActionDispatch::IntegrationTest
     @user = users(:zack)
     @other_user = users(:fred)
     @account = @user.owned_accounts.first
+    @second_account = @user.owned_accounts.last
     @transfer = AccountTransfer.new(account: @account, original_owner: @user, target_owner: @other_user.email)
     @transfer.save
   end
@@ -24,14 +25,15 @@ class AccountTransfersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create a transfer for owned account when logged in" do
     sign_in @user
+    assert_not_equal @account, @second_account
     assert_difference('AccountTransfer.count') do
       post account_transfers_url, params: { account_transfer: {
-        account_id: @account.id,
+        account_id: @second_account.id,
         target_owner: 'test@example.com'
       } }
     end
 
-    assert_redirected_to user_account_url(@user, @account)
+    assert_redirected_to user_account_url(@user, @second_account)
   end
 
   test "should not create a transfer for last owned account" do
@@ -40,6 +42,18 @@ class AccountTransfersControllerTest < ActionDispatch::IntegrationTest
     assert_no_difference('AccountTransfer.count') do
       post account_transfers_url, params: { account_transfer: {
         account_id: @other_user.owned_accounts.first.id,
+        target_owner: 'test@example.com'
+      } }
+    end
+
+    assert_response :forbidden
+  end
+
+  test "should not create a transfer when one is already pending" do
+    sign_in @user
+    assert_no_difference('AccountTransfer.count') do
+      post account_transfers_url, params: { account_transfer: {
+        account_id: @account.id,
         target_owner: 'test@example.com'
       } }
     end

@@ -1,17 +1,21 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  id: 1
   name: 'Account 1'
   owner_id: 1
 
 two:
+  id: 2
   name: 'Account 2'
   owner_id: 2
 
 three:
+  id: 3
   name: 'Account 3'
   owner_id: 3
 
 four:
+  id: 4
   name: 'Account 4'
   owner_id: 1
