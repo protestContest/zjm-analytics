@@ -11,11 +11,12 @@
     min-width: $d-header-height;
     padding: 0 10px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-end;
     color: $c-dark-gray;
     font-size: 14px;
     @include user-select(none);
+    padding-bottom: $d-header-padding;
   }
 
   &:hover .button-menu__button {
@@ -58,6 +59,12 @@
     text-align: center;
     margin: 5px 0;
     @include user-select(none);
+  }
+
+  .button-menu__title--small {
+    font-size: 10px;
+    margin: 0;
+    text-align: left;
   }
 
   .button-menu__item {

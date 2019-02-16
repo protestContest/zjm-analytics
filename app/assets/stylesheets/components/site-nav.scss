@@ -23,13 +23,18 @@
     min-width: $d-header-height;
     padding: 0 10px;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     color: $c-dark-gray;
     font-size: 14px;
 
      &:hover {
         background: $c-light-gray;
      }
+  }
+
+  &.site-nav--align-bottom .site-nav__item--link {
+    padding-bottom: $d-header-padding;
   }
 }
