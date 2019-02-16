@@ -5,14 +5,14 @@ class ApplicationController < ActionController::Base
   def current_account
     return nil if !current_user
 
-    if !user_session[:current_account].nil?
-      return Account.find(session[:current_account])
+    if !user_session['current_account'].nil?
+      return Account.find(user_session['current_account'])
     else
       return current_user.all_accounts.min_by(&:created_at)
     end
   end
 
-  def current_account=(account)
+  def switch_to_account account
     user_session[:current_account] = account.id
   end
 

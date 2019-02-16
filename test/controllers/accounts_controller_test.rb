@@ -158,4 +158,21 @@ class AccountsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :forbidden
   end
+
+  test "should allow a user to switch to an account they are a member of" do
+    sign_in @user
+    get switch_account_url(@account)
+    assert_redirected_to dashboard_path
+  end
+
+  test "should not allow switching accounts when not logged in" do
+    get switch_account_url(@account)
+    assert_redirected_to new_user_session_url
+  end
+
+  test "should not allow switching to an account user is not a member of" do
+    sign_in users(:fred)
+    get switch_account_url(@account)
+    assert_response :forbidden
+  end
 end

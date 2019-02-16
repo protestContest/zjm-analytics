@@ -17,5 +17,8 @@ Rails.application.routes.draw do
     resources :users, only: [:show] do
       resources :accounts
     end
+
+    get '/accounts/:id/switch', to: 'accounts#switch', as: :switch_account
+
   end
 end

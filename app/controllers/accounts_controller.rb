@@ -1,6 +1,6 @@
 class AccountsController < ApplicationController
-  before_action :set_account, only: [:show, :edit, :update, :destroy]
-  before_action :user_has_account!, only: [:show]
+  before_action :set_account, only: [:show, :edit, :update, :destroy, :switch]
+  before_action :user_has_account!, only: [:show, :switch]
   before_action :user_owns_account!, only: [:edit, :update, :destroy]
   before_action :not_users_last_account!, only: [:destroy]
   before_action :current_users_accounts!, only: [:index]
@@ -62,6 +62,11 @@ class AccountsController < ApplicationController
       format.html { redirect_to user_accounts_url(current_user), notice: 'Account was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def switch
+    switch_to_account @account
+    redirect_back fallback_location: dashboard_path
   end
 
   private
