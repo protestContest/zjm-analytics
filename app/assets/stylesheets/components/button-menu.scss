@@ -15,6 +15,7 @@
     justify-content: center;
     color: $c-dark-gray;
     font-size: 14px;
+    @include user-select(none);
   }
 
   &:hover .button-menu__button {
