@@ -6,10 +6,18 @@ class ApplicationController < ActionController::Base
     return nil if !current_user
 
     if !user_session['current_account'].nil?
-      return Account.find(user_session['current_account'])
+      account = Account.find(user_session['current_account'])
+      account ||= current_user.all_accounts.min_by(&:created_at)
     else
-      return current_user.all_accounts.min_by(&:created_at)
+      account = current_user.all_accounts.min_by(&:created_at)
     end
+
+    if account.nil?
+      account = current_user.owned_accounts.build(name: 'Personal')
+      account.save
+    end
+
+    return account
   end
 
   def switch_to_account account
