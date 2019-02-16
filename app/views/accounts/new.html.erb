@@ -1,5 +1,7 @@
 <h1>New Account</h1>
 
-<%= render 'form', account: @account, owner: current_user %>
+<div class='col-6 offset-3'>
+  <%= render 'form', account: @account, owner: current_user %>
 
-<%= link_to 'Back', user_accounts_path(current_user) %>
+  <%= link_to 'Back', user_accounts_path(current_user) %>
+</div>

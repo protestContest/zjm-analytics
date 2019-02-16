@@ -6,7 +6,7 @@ class AccountsController < ApplicationController
   before_action :current_users_accounts!, only: [:index]
 
   def index
-    @accounts = User.find(params[:user_id]).owned_accounts
+    @accounts = User.find(params[:user_id]).all_accounts
   end
 
   # GET /accounts/1
@@ -27,7 +27,7 @@ class AccountsController < ApplicationController
   # POST /accounts.json
   def create
     @account = Account.new(account_params)
-    @account.owner_id = current_user.id
+    @account.owner = current_user
 
     respond_to do |format|
       if @account.save
@@ -89,7 +89,8 @@ class AccountsController < ApplicationController
 
     def not_users_last_account!
       if @account.owner.owned_accounts.size == 1
-        render 'shared/error', notice: 'You cant\'t delete your last account', status: :forbidden
+        @message = 'You cant\'t delete your last account'
+        render 'shared/error', status: :forbidden
       end
     end
 

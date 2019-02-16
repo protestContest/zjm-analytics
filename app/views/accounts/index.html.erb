@@ -1,27 +1,23 @@
-<p id="notice"><%= notice %></p>
+<h1 class='h1'>Accounts</h1>
 
-<h1>Accounts</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Owner</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @accounts.each do |account| %>
-      <tr>
-        <td><%= account.owner %></td>
-        <td><%= link_to 'Show', [account.owner, account] %></td>
-        <td><%= link_to 'Edit', edit_user_account_path(account.owner, account) %></td>
-        <td><%= link_to 'Destroy', [account.owner, account], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<section class='section'>
+<% @accounts.each do |account| %>
+  <div class='resource-list-item'>
+    <h2 class='resource-list-item__name'><%= account.name %></h2>
+    <% if account == current_account %>
+      <span class='resource-list-item__link'>Current account</span>
+    <% else %>
+      <span class='resource-list-item__link'>Switch to this account</span>
     <% end %>
-  </tbody>
-</table>
+    <% if account.owner == current_user %>
+      | <%= link_to 'Edit', edit_user_account_path(account.owner, account), class: 'resource-list-item__link' %>
+      <% if current_user.owned_accounts.size > 1 %>
+        | <%= link_to 'Delete', [account.owner, account], method: :delete, data: { confirm: "Delete account #{account.name}?" }, class: 'resource-list-item__link' %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
+</section>
 
-<br>
 
-<%= link_to 'New Account', new_user_account_path(current_user) %>
+<%= link_to 'New Account', new_user_account_path(current_user), class: 'button' %>

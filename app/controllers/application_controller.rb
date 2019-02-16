@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     if !user_session[:current_account].nil?
       return Account.find(session[:current_account])
     else
-      return current_user.owned_accounts.first
+      return current_user.all_accounts.min_by(&:created_at)
     end
   end
 

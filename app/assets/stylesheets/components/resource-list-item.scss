@@ -1,0 +1,16 @@
+.resource-list-item {
+  margin-bottom: 10px;
+
+  .resource-list-item__name {
+    font-weight: normal;
+    margin: 0;
+    font-size: 26px;
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  .resource-list-item__link {
+    display: inline-block;
+    margin: 0 5px;
+  }
+}

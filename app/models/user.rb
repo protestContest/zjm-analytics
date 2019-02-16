@@ -18,6 +18,10 @@ class User < ApplicationRecord
     self == account.owner || account.users.include?(self)
   end
 
+  def all_accounts
+    (self.owned_accounts + self.accounts).sort_by(&:name)
+  end
+
   private
 
     def create_default_owned_account

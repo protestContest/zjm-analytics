@@ -1,4 +1,7 @@
-<%= form_with(model: account, url: account.new_record? ? new_user_account_path(owner) : user_account_path(owner, account), local: true) do |form| %>
+<%= form_with(model: account,
+      url: account.new_record? ? user_accounts_path(owner) : user_account_path(owner, account),
+      local: true,
+      html: { class: 'form' }) do |form| %>
   <% if account.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(account.errors.count, "error") %> prohibited this account from being saved:</h2>
@@ -11,12 +14,12 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :owner_id %>
-    <%= form.text_field :owner_id, id: :account_owner_id %>
+  <div class="form__row">
+    <%= form.label :name, class: 'label' %>
+    <%= form.text_field :name, class: 'input' %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form__row">
+    <%= form.submit class: 'button' %>
   </div>
 <% end %>
