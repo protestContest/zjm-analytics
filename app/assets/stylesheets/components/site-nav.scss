@@ -1,18 +1,35 @@
 @import '../shared/colors';
+@import '../shared/dimensions';
 
 .site-nav {
   font-size: 12px;
   display: flex;
   align-items: center;
-}
 
-.site-nav .site-nav__item {
-  margin-left: 10px;
-}
+  .site-nav__item {
+    margin-left: 10px;
+  }
 
-.site-nav .site-nav__user-icon {
-  height: 32px;
-  width: 32px;
-  border-radius: 16px;
-  border: 1px solid $c-light-gray;
+  .site-nav__user-icon {
+    height: 32px;
+    width: 32px;
+    border-radius: 16px;
+    border: 1px solid $c-light-gray;
+  }
+
+  .site-nav__item--link {
+    display: block;
+    height: $d-header-height;
+    min-width: $d-header-height;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $c-dark-gray;
+    font-size: 14px;
+
+     &:hover {
+        background: $c-light-gray;
+     }
+  }
 }

@@ -19,8 +19,8 @@
           <%= render partial: 'shared/account_menu' %>
           <%= render partial: 'shared/user_menu' %>
         <% else %>
-          <%= link_to "Sign up", new_user_registration_path, class: 'site-nav__item' %>
-          <%= link_to "Login", new_user_session_path, class: 'site-nav__item' %>
+          <%= link_to "Sign up", new_user_registration_path, class: 'site-nav__item site-nav__item--link' %>
+          <%= link_to "Login", new_user_session_path, class: 'site-nav__item site-nav__item--link' %>
         <% end %>
       </nav>
     </header>
