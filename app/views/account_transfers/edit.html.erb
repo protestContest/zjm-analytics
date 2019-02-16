@@ -2,5 +2,7 @@
 
 <%= render 'form', transfer: @transfer %>
 
-<%= link_to 'Show', @transfer %> |
-<%= link_to 'Back', user_accounts_path(current_user) %>
+<%= link_to 'Show', @transfer %>
+<% if user_signed_in? %>
+ | <%= link_to 'Back', user_accounts_path(current_user) %>
+<% end %>

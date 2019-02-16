@@ -1,9 +1,13 @@
 class AccountTransfersController < ApplicationController
+  skip_before_action :authenticate_user!
   before_action :set_account_transfer, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, unless: :user_is_responding
+
   before_action :user_owns_account!, only: [:create]
   before_action :not_users_last_account!, only: [:create]
   before_action :no_transfer_pending!, only: [:create]
-  before_action :user_initiated_transfer!, only: [:show, :edit, :update, :destroy]
+  before_action :user_initiated_transfer!, only: [:show, :edit, :update, :destroy], unless: :user_is_responding
+
 
   def new
     @transfer = AccountTransfer.new
@@ -92,5 +96,13 @@ class AccountTransfersController < ApplicationController
       if current_user.owned_accounts.size == 1
         render 'shared/error', notice: 'You cant\'t transfer your only account', status: :forbidden
       end
+    end
+
+    def user_is_responding
+      if params[:action] == 'update' || params[:action] == 'edit'
+        return params[:response_token] == @transfer.response_token
+      end
+
+      return false
     end
 end
