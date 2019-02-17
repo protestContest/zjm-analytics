@@ -13,7 +13,11 @@ Rails.application.routes.draw do
     end
 
     resources :sites
+
     resources :account_transfers
+    get '/account_transfers/:id/accept', to: 'account_transfers#accept', as: :accept_account_transfer
+    get '/account_transfers/:id/reject', to: 'account_transfers#reject', as: :reject_account_transfer
+
     resources :users, only: [:show] do
       resources :accounts
     end

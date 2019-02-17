@@ -1,15 +1,31 @@
 <h1 class='h1'>Transfer request for <%= @transfer.account.name %></h1>
 
-<% if @transfer.original_owner == current_user %>
+<% if @is_responding && @transfer.pending? %>
+  <section class='section'>
+    <%= form_with(model: @transfer, local: true, html: { class: 'form form--button' }) do |form| %>
+      <%= form.hidden_field :response, value: 'accept' %>
+      <%= form.submit 'Accept', class: 'button' %>
+    <% end %>
+
+    <%= form_with(model: @transfer, local: true, html: { class: 'form form--button' }) do |form| %>
+      <%= form.hidden_field :response, value: 'reject' %>
+      <%= form.submit 'Reject', class: 'button button--danger' %>
+    <% end %>
+  </section>
+<% end %>
+
+<% if @transfer.original_owner == current_user && @transfer.pending? %>
   <section class='section'>
     <%= link_to 'Cancel transfer', @transfer, method: :delete, class: 'button' %>
   </section>
 <% end %>
 
-<% if @is_responding %>
-  <section class='section'>
+<% if @transfer.accepted? %>
+  <p>This account transfer was accepted on <%= @transfer.accepted_at %>.</p>
+<% end %>
 
-  </section>
+<% if @transfer.rejected? %>
+  <p>This account transfer was rejected.</p>
 <% end %>
 
 <%= link_to 'Edit', edit_account_transfer_path(@transfer) %> |

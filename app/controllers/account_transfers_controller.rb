@@ -1,13 +1,14 @@
 class AccountTransfersController < ApplicationController
   skip_before_action :authenticate_user!
-  before_action :set_account_transfer, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, unless: :user_is_responding
+  before_action :set_account_transfer, only: [:show, :accept, :reject, :destroy]
+  before_action :authenticate_user!, unless: :is_public_with_token
 
   before_action :user_owns_account!, only: [:create]
   before_action :not_users_last_account!, only: [:create]
   before_action :no_transfer_pending!, only: [:create]
-  before_action :user_initiated_transfer!, only: [:show, :edit, :update, :destroy], unless: :user_is_responding
+  before_action :user_initiated_transfer!, only: [:show, :destroy], unless: :has_token
 
+  before_action :has_token!, only: [:accept, :reject]
 
   def new
     @transfer = AccountTransfer.new
@@ -31,17 +32,24 @@ class AccountTransfersController < ApplicationController
   def show
   end
 
-  def edit
+  def accept
+    respond_to do |format|
+      if @transfer.accept!
+        @transfer.account.owner = current_user
+        @transfer.account.save
+        format.html { redirect_to [current_user, @transfer.account] }
+      else
+        format.html { render 'shared/error', status: :forbidden }
+      end
+    end
   end
 
-  def update
+  def reject
     respond_to do |format|
-      if @transfer.update(account_transfer_params)
-        format.html { redirect_to @transfer, notice: 'Account was successfully updated.' }
-        format.json { render :show, status: :ok, location: @transfer }
+      if @transfer.reject!
+        format.html { redirect_to @transfer }
       else
-        format.html { render :edit }
-        format.json { render json: @transfer.errors, status: :unprocessable_entity }
+        format.html { render 'shared/error', status: :forbidden }
       end
     end
   end
@@ -71,6 +79,10 @@ class AccountTransfersController < ApplicationController
       }
     end
 
+    def account_transfer_response_param
+      params.require(:account_transfer).permit(:response)
+    end
+
     def user_owns_account!
       account = Account.find(params[:account_transfer][:account_id])
       if account.nil? || account.owner != current_user
@@ -98,14 +110,24 @@ class AccountTransfersController < ApplicationController
       end
     end
 
-    def user_is_responding
+    def is_public_with_token
+      ['reject', 'show'].include?(params[:action]) && has_token
+    end
+
+    def has_token
       @is_responding = false
-      if params[:action] == 'update' || params[:action] == 'show'
+      if ['accept', 'reject', 'show'].include? params[:action]
         if params[:response_token] == @transfer.response_token
           @is_responding = true
         end
       end
 
       return @is_responding
+    end
+
+    def has_token!
+      if !has_token
+        render 'shared/error', notice: 'You can\'t do that', status: :forbidden
+      end
     end
 end
