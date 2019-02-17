@@ -1,3 +1,5 @@
+---
+:verboase: true
 :concurrency: 3
 :queues:
   - default
