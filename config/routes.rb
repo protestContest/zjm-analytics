@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   get '/track', to: 'hits#track', as: 'tracking'
 
@@ -25,4 +27,6 @@ Rails.application.routes.draw do
     get '/accounts/:id/switch', to: 'accounts#switch', as: :switch_account
 
   end
+
+  mount Sidekiq::Web => '/sidekiq'
 end
