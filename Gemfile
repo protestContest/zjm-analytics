@@ -23,6 +23,7 @@ gem 'devise'
 gem 'pg'
 
 gem 'sidekiq'
+gem 'devise-async'
 gem 'redis'
 gem 'selenium-webdriver'
 gem 'aws-sdk-s3'

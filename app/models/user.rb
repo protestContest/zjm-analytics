@@ -11,7 +11,7 @@ class User < ApplicationRecord
 
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable, :confirmable,
+  devise :database_authenticatable, :registerable, :confirmable, :async,
          :recoverable, :rememberable, :validatable, password_length: 8..128
 
   def has_account account
