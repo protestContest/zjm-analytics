@@ -4,3 +4,7 @@
 :queues:
   - default
   - mailers
+production:
+  :queues:
+    - zjm-analytics_production_default
+    - zjm-analytics_production_mailers
