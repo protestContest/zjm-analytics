@@ -2,15 +2,8 @@
 
 <% if @is_responding && @transfer.pending? %>
   <section class='section'>
-    <%= form_with(model: @transfer, local: true, html: { class: 'form form--button' }) do |form| %>
-      <%= form.hidden_field :response, value: 'accept' %>
-      <%= form.submit 'Accept', class: 'button' %>
-    <% end %>
-
-    <%= form_with(model: @transfer, local: true, html: { class: 'form form--button' }) do |form| %>
-      <%= form.hidden_field :response, value: 'reject' %>
-      <%= form.submit 'Reject', class: 'button button--danger' %>
-    <% end %>
+    <%= link_to 'Accept', accept_account_transfer_path(@transfer, response_token: @transfer.response_token), class: 'button' %>
+    <%= link_to 'Reject', reject_account_transfer_path(@transfer, response_token: @transfer.response_token), class: 'button button--danger' %>
   </section>
 <% end %>
 
