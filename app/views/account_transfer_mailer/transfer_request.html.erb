@@ -46,8 +46,8 @@
       Hello,
       <p>Someone requested you to take ownership of the analytics account “<%= link_to @account.name, @transfer_response_url %>.” To assume management of this account, click “Accept” below.</p>
       <p align="center" style="text-align: center; margin: 30px 0px;">
-        <a href="<%= link_to 'Accept', @accept_url %>" class='button'>Accept</a>
-        <a href="<%= link_to 'Reject', @reject_url %>" class='button'>Reject</a>
+        <%= link_to 'Accept', @accept_url, class: 'button' %>
+        <%= link_to 'Reject', @reject_url, class: 'button' %>
       </p>
       <p>If you think this was a mistake, you can ignore this email.</p>
     </td>
