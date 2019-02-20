@@ -2,6 +2,7 @@ require 'test_helper'
 
 class AccountTransfersControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
+  include ActionMailer::TestHelper
 
   def setup
     @user = users(:zack)
@@ -34,6 +35,16 @@ class AccountTransfersControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to user_account_url(@user, @second_account)
+  end
+
+  test "should send an email to target owner when transfer is created" do
+    sign_in @user
+    assert_enqueued_email_with AccountTransferMailer, :transfer_request do
+      post account_transfers_url, params: { account_transfer: {
+        account_id: @second_account.id,
+        target_owner: 'test@example.com'
+      } }
+    end
   end
 
   test "should not create a transfer for last owned account" do
