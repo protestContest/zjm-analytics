@@ -20,6 +20,10 @@ Rails.application.routes.draw do
     get '/account_transfers/:id/accept', to: 'account_transfers#accept', as: :accept_account_transfer
     get '/account_transfers/:id/reject', to: 'account_transfers#reject', as: :reject_account_transfer
 
+    resources :account_invites
+    get '/account_invites/:id/accept', to: 'account_invites#accept', as: :accept_account_invite
+    get '/account_invites/:id/reject', to: 'account_invites#reject', as: :reject_account_invite
+
     resources :users, only: [:show] do
       resources :accounts
     end
