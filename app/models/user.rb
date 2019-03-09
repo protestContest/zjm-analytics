@@ -7,11 +7,19 @@ class User < ApplicationRecord
   has_and_belongs_to_many :accounts
   has_many :account_transfer_requests, class_name: 'AccountTransfer', foreign_key: 'original_owner', dependent: :destroy
 
+  has_many :access_grants, class_name: "Doorkeeper::AccessGrant",
+                           foreign_key: :resource_owner_id,
+                           dependent: :delete_all # or :destroy if you need callbacks
+
+  has_many :access_tokens, class_name: "Doorkeeper::AccessToken",
+                           foreign_key: :resource_owner_id,
+                           dependent: :delete_all # or :destroy if you need callbacks
+
   after_create :create_default_owned_account
 
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable, :confirmable,
+  devise :database_authenticatable, :registerable, :confirmable, :doorkeeper,
          :recoverable, :rememberable, :validatable, password_length: 8..128
 
   def has_account account
