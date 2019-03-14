@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190309000720) do
+ActiveRecord::Schema.define(version: 20190314192602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,12 +106,12 @@ ActiveRecord::Schema.define(version: 20190309000720) do
 
   create_table "sites", force: :cascade do |t|
     t.string "name"
-    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "url"
     t.string "screenshot_url"
-    t.index ["user_id"], name: "index_sites_on_user_id"
+    t.bigint "account_id"
+    t.index ["account_id"], name: "index_sites_on_account_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -138,5 +138,5 @@ ActiveRecord::Schema.define(version: 20190309000720) do
   add_foreign_key "hits", "sites"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
-  add_foreign_key "sites", "users"
+  add_foreign_key "sites", "accounts"
 end

@@ -1,14 +1,14 @@
 class Site < ApplicationRecord
-  belongs_to :user
+  belongs_to :account
   has_many :hits, dependent: :destroy
 
   validates :name, presence: true
 
-  validates_uniqueness_of :name, scope: :user_id
+  validates_uniqueness_of :name, scope: :account_id
 
   def tracking_id
-    user_id = self.user.id.to_s.rjust(6, "0")
-    "ZA-#{user_id}-#{self.id}"
+    account_id = self.account.id.to_s.rjust(6, "0")
+    "ZA-#{account_id}-#{self.id}"
   end
 
   def hits_by_day
@@ -61,7 +61,7 @@ class Site < ApplicationRecord
     matches = tracking_id.match(self.tracking_id_regex)
     if matches
       return {
-        user_id: matches[1].to_i,
+        account_id: matches[1].to_i,
         site_id: matches[2].to_i
       }
     else

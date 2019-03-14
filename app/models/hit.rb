@@ -12,7 +12,7 @@ class Hit < ApplicationRecord
         errors.add(:tracking_id)
       end
 
-      if self.site.user.id != site_data[:user_id]
+      if self.site.account.id != site_data[:account_id]
         errors.add(:tracking_id)
       end
     end

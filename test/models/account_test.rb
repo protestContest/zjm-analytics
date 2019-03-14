@@ -27,4 +27,12 @@ class AccountTest < ActiveSupport::TestCase
     @account.save
     assert fred_account.valid?
   end
+
+  test "destroying an account also destroys its sites" do
+    account = accounts(:one)
+    site = account.sites.first
+    account.destroy
+
+    assert_not Site.exists? site.id
+  end
 end

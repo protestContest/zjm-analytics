@@ -8,14 +8,14 @@ one:
   id: 1
   name: 'Test Site'
   url: 'http://example.com'
-  user_id: 1
+  account_id: 1
 
 two:
   id: 2
   name: 'Test Site 2'
-  user_id: 2
+  account_id: 2
 
 three:
   id: 3
   name: 'Test Site 3'
-  user_id: 1
+  account_id: 1

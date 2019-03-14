@@ -31,14 +31,6 @@ class UserTest < ActiveSupport::TestCase
     assert_not Account.exists? owned_account.id
   end
 
-  test "destroying a user also destroys its sites" do
-    user = users(:zack)
-    site = user.sites.first
-    user.destroy
-
-    assert_not Site.exists? site.id
-  end
-
   test "has_account is true for owned accounts and accounts user is a member of" do
     user = users(:zack)
     owned_account = user.owned_accounts.first

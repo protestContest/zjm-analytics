@@ -3,7 +3,8 @@ require 'test_helper'
 class SiteTest < ActiveSupport::TestCase
   def setup
     @user = users(:zack)
-    @site = @user.sites.build(name: "Site Name")
+    @account = accounts(:one)
+    @site = @account.sites.build(name: "Site Name")
   end
 
   test "should be valid" do
@@ -15,21 +16,21 @@ class SiteTest < ActiveSupport::TestCase
     assert_not @site.valid?
   end
 
-  test "name should be unique for a user" do
+  test "name should be unique for an account" do
     dup_site = @site.dup
     @site.save
     assert_not dup_site.valid?
   end
 
-  test "name can be reused for different users" do
-    fred = users(:fred)
-    fred_site = fred.sites.build(name: @site.name)
+  test "name can be reused for different accounts" do
+    other_account = accounts(:two)
+    account_site = other_account.sites.build(name: @site.name)
     @site.save
-    assert fred_site.valid?
+    assert account_site.valid?
   end
 
   test "tracking_id should be available for saved site" do
-    assert_equal 1, @user.id
+    assert_equal 1, @account.id
     @site.save
     tracking_id = "ZA-000001-#{@site.id}"
 
@@ -39,7 +40,7 @@ class SiteTest < ActiveSupport::TestCase
   test "it should parse a tracking_id" do
     tracking_id = 'ZA-000123-45'
     site_data = Site.parse_tracking_id tracking_id
-    assert_equal 123, site_data[:user_id]
+    assert_equal 123, site_data[:account_id]
     assert_equal 45, site_data[:site_id]
   end
 

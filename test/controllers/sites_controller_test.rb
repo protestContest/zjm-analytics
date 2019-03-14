@@ -7,7 +7,7 @@ class SitesControllerTest < ActionDispatch::IntegrationTest
   test "logged in user can see owned site" do
     user = users(:zack)
     site = sites(:one)
-    assert_equal user, site.user
+    assert site.account.users.include?(user) || site.account.owner == user
     sign_in user
 
     get site_url(site)
@@ -23,7 +23,7 @@ class SitesControllerTest < ActionDispatch::IntegrationTest
   test "logged in user cannot see unowned site" do
     user = users(:zack)
     site = sites(:two)
-    assert_not_equal user, site.user
+    assert_not_equal user, site.account.owner
     sign_in user
 
     get site_url(site)
@@ -62,10 +62,10 @@ class SitesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_user_session_url
   end
 
-  test "authenticated can update a site they own" do
+  test "authenticated user can update a site they own" do
     user = users(:zack)
     site = sites(:one)
-    assert_equal user, site.user
+    assert site.account.users.include?(user) || site.account.owner == user
     sign_in user
 
     patch site_url(site), params: { site: { name: 'Renamed Site' } }
@@ -75,7 +75,7 @@ class SitesControllerTest < ActionDispatch::IntegrationTest
   test "authenticated cannot update a site they do not own" do
     user = users(:zack)
     site = sites(:two)
-    assert_not_equal user, site.user
+    assert_not_equal user, site.account.owner
     sign_in user
 
     patch site_url(site), params: { site: { name: 'Renamed Site' } }
@@ -91,7 +91,7 @@ class SitesControllerTest < ActionDispatch::IntegrationTest
   test "authenticated user can destroy a site they own" do
     user = users(:zack)
     site = sites(:one)
-    assert_equal user, site.user
+    assert site.account.users.include?(user) || site.account.owner == user
     sign_in user
 
     assert_difference('Site.count', -1) do
@@ -102,7 +102,7 @@ class SitesControllerTest < ActionDispatch::IntegrationTest
   test "authenticated user cannot destroy a site they do not own" do
     user = users(:zack)
     site = sites(:two)
-    assert_not_equal user, site.user
+    assert_not_equal user, site.account.owner
     sign_in user
 
     assert_no_difference('Site.count') do
@@ -131,7 +131,7 @@ class SitesControllerTest < ActionDispatch::IntegrationTest
     assert_enqueued_with(job: ScreenshotJob) do
       user = users(:zack)
       site = sites(:one)
-      assert_equal user, site.user
+      assert site.account.users.include?(user) || site.account.owner == user
       sign_in user
 
       patch site_url(site), params: { site: { name: 'Renamed Site', url: 'http://example.com' } }
@@ -141,7 +141,7 @@ class SitesControllerTest < ActionDispatch::IntegrationTest
   test "updating a site without a url does not start a screenshot job" do
     user = users(:zack)
     site = sites(:one)
-    assert_equal user, site.user
+    assert site.account.users.include?(user) || site.account.owner == user
     sign_in user
 
     patch site_url(site), params: { site: { name: 'Renamed Site', url: '' } }
