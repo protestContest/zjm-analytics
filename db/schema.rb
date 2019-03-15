@@ -15,6 +15,17 @@ ActiveRecord::Schema.define(version: 20190314192602) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "account_invites", force: :cascade do |t|
+    t.string "invite_email"
+    t.bigint "account_id"
+    t.integer "response", default: 0
+    t.datetime "responded_at"
+    t.string "response_token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_account_invites_on_account_id"
+  end
+
   create_table "account_transfers", force: :cascade do |t|
     t.bigint "account_id"
     t.bigint "original_owner_id"
@@ -132,6 +143,7 @@ ActiveRecord::Schema.define(version: 20190314192602) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "account_invites", "accounts"
   add_foreign_key "account_transfers", "accounts"
   add_foreign_key "account_transfers", "users", column: "original_owner_id"
   add_foreign_key "accounts", "users", column: "owner_id"
