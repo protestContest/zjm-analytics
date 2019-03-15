@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     end
 
     unauthenticated do
-      root 'devise/sessions#new', as: :unauthenticated_root
+      root 'devise/sessions#new'
     end
 
     resources :sites
@@ -31,6 +31,8 @@ Rails.application.routes.draw do
     get '/accounts/:id/switch', to: 'accounts#switch', as: :switch_account
 
   end
+
+  use_doorkeeper
 
   mount Sidekiq::Web => '/sidekiq'
 end

@@ -27,6 +27,8 @@ gem 'redis'
 gem 'selenium-webdriver'
 gem 'aws-sdk-s3'
 gem 'gravtastic'
+gem 'doorkeeper'
+gem 'devise-doorkeeper'
 
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
