@@ -1,27 +1,29 @@
-<%= form_for @site, html: { class: "form col-4 offset-4" } do |f| %>
-  <% if @site.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@site.errors.count, "error") %> prohibited this site from being saved:</h2>
+<div class='row'>
+  <%= form_for @site, html: { class: "form four columns offset by-four" } do |f| %>
+    <% if @site.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@site.errors.count, "error") %> prohibited this site from being saved:</h2>
 
-      <ul>
-      <% @site.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @site.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class='form__row'>
+      <%= f.label :name, class: 'label' %>
+      <%= f.text_field :name, class: 'input' %>
+    </div>
+
+    <div class='form__row'>
+      <%= f.label :url, class: 'label' %>
+      <%= f.url_field :url, class: 'input' %>
+    </div>
+
+    <div class="form__row">
+      <%= f.submit class: 'button' %>
     </div>
   <% end %>
-
-  <div class='form__row'>
-    <%= f.label :name, class: 'label' %>
-    <%= f.text_field :name, class: 'input' %>
-  </div>
-
-  <div class='form__row'>
-    <%= f.label :url, class: 'label' %>
-    <%= f.url_field :url, class: 'input' %>
-  </div>
-
-  <div class="form__row">
-    <%= f.submit class: 'button' %>
-  </div>
-<% end %>
+</div>
