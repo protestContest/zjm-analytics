@@ -39,9 +39,16 @@
     color: $c-white;
   }
 
+  &.button--danger[disabled] {
+    background-color: $c-light-danger;
+    color: $c-light-danger-text;
+  }
+
   &[disabled] {
     color: $c-dark-gray;
     border-color: $c-dark-gray;
     background-color: $c-least-white;
+    background-image: none;
+    border-color: rgba(0, 0, 0, 0.2);
   }
 }

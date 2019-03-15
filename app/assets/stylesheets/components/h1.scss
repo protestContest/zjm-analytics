@@ -18,9 +18,15 @@
   margin: 0;
 }
 
-hgroup {
+hgroup,
+hgroup.h1 {
   margin-bottom: 32px;
 }
-hgroup .h1 {
+hgroup.h2 {
+  margin-bottom: 28px;
+  font-weight: initial;
+}
+hgroup .h1,
+hgroup .h2 {
   margin-bottom: 0;
 }

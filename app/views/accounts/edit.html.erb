@@ -1,15 +1,17 @@
 <h1>Editing Account</h1>
 
-<div class='col-4 offset-4'>
-  <%= render 'form', account: @account, owner: @account.owner %>
+<div class='row'>
+  <div class='four columns offset by-four'>
+    <%= render 'form', account: @account, owner: @account.owner %>
 
-  <% if @pending_transfer %>
-    <p>This account is <%= link_to 'pending transfer', @account_transfer, class: 't-link' %>.</p>
-  <% else %>
-    <h3>Transfer ownership</h3>
-    <%= render 'account_transfers/form', transfer: @account_transfer %>
-  <% end %>
+    <% if @pending_transfer %>
+      <p>This account is <%= link_to 'pending transfer', @account_transfer, class: 't-link' %>.</p>
+    <% else %>
+      <h3>Transfer ownership</h3>
+      <%= render 'account_transfers/form', transfer: @account_transfer %>
+    <% end %>
 
-  <%= link_to 'Show', [@account.owner, @account] %> |
-  <%= link_to 'Back', user_accounts_path(current_user) %>
+    <%= link_to 'Show', [@account.owner, @account] %> |
+    <%= link_to 'Back', user_accounts_path(current_user) %>
+  </div>
 </div>
