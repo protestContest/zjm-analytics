@@ -40,7 +40,7 @@ class AccountsController < ApplicationController
 
     respond_to do |format|
       if @account.save
-        format.html { redirect_to [@account.owner, @account], notice: 'Account was successfully created.' }
+        format.html { redirect_back fallback_location: [@account.owner, @account] }
         format.json { render :show, status: :created, location: [@account.owner, @account] }
       else
         format.html { render :new }

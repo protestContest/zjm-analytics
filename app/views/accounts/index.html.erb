@@ -18,10 +18,10 @@
           <%= render :partial => 'box-list-row', locals: {account: account, owned: true} %>
         <% end %>
 
-        <div class='box-list__action-row _will-hide' id='new-account-row' data-js-toggle='#new-account-form-row,#new-account-row'>
+        <div class='box-list__action-row _will-hide' id='account-row-new' data-js-toggle='#account-row-new,#account-row-new + .box-list__row'>
           <div class='t-label'>Create new account</div>
         </div>
-        <div class='box-list__row _hidden' id='new-account-form-row'>
+        <div class='box-list__row box-list__row--no-highlight _hidden' id='account-row-new'>
           <%= render :partial => 'row-form', locals: {account: Account.new, owner: current_user} %>
         </div>
       </div>
