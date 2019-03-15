@@ -1,0 +1,18 @@
+<%= form_with(model: account,
+  url: account.new_record? ? user_accounts_path(owner) : user_account_path(owner, account),
+  remote: true,
+  html: { class: 'row-form row-form--align-input' }) do |form| %>
+
+  <%= form.text_field :name, class: 'input', value: account.name, placeholder: 'New Account' %>
+
+  <div class='row-form__actions'>
+    <%= form.submit 'Save', class: 'button' %>
+
+    <% if current_user.owned_accounts.size > 1 && !account.new_record? %>
+      <%= link_to 'Delete', [account.owner, account], method: :delete, data: { confirm: "Delete account #{account.name}?" }, class: 'button button--danger' %>
+    <% end %>
+    <div class='box-list__action' data-js-toggle='<%= row_toggle_selector account %>'>
+      <img class='box-list__action-icon' src='<%= asset_path("entypo/cancel.svg") %>' />
+    </div>
+  </div>
+<% end %>

@@ -12,13 +12,16 @@ document.addEventListener('turbolinks:load', () => {
   activators.forEach(activator => {
 
     activator.addEventListener('click', (event) => {
+      activator.classList.add('__toggle-self');
       let targetSelectors = activator.dataset.jsToggle.split(',');
       targetSelectors.forEach(targetSelector => {
-        let targetEl = (targetSelector === '&') ? activator : document.querySelector(targetSelector);
+        targetSelector = targetSelector.replace('&', '.__toggle-self');
+        let targetEl = document.querySelector(targetSelector);
         if (targetEl) {
           targetEl.classList.toggle('_active');
         }
       });
+      activator.classList.remove('__toggle-self');
 
       event.stopPropagation();
     });

@@ -1,0 +1,24 @@
+<div class='box-list__row _will-hide' id='account-row-<%= account.id %>'>
+  <div class='box-list__row-title'><%= account.name %></div>
+  <div class='box-list__row-actions'>
+    <div class='box-list__tooltip t-muted' id='account-tooltip-<%= account.id %>'></div>
+    <% if account != current_account %>
+      <a href='<%= switch_account_path(account) %>' class='box-list__action' data-js-tooltip='#account-tooltip-<%= account.id %>:Switch to this account'>
+        <img class='box-list__action-icon' src='<%= asset_path("entypo/switch.svg") %>' alt='Switch accounts' />
+      </a>
+    <% end %>
+    <% if owned %>
+      <a href='<%= switch_account_path(account) %>' class='box-list__action' data-js-tooltip='#account-tooltip-<%= account.id %>:Invite user to account'>
+        <img class='box-list__action-icon' src='<%= asset_path("entypo/user-add.svg") %>' alt='Switch accounts' />
+      </a>
+      <div class='box-list__action' data-js-tooltip='#account-tooltip-<%= account.id %>:Edit account ' data-js-toggle='<%= row_toggle_selector account %>'>
+        <img class='box-list__action-icon' src='<%= asset_path("entypo/pencil.svg") %>' alt='Switch accounts' />
+      </div>
+    <% else %>
+
+    <% end %>
+  </div>
+</div>
+<div class='box-list__row _hidden'>
+  <%= render :partial => 'row-form', locals: {account: account, owner: account.owner} %>
+</div>
