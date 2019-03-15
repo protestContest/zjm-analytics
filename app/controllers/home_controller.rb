@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def dashboard
     @user = current_user
-    @sites = @user.sites
+    @sites = current_account.sites
   end
 end
