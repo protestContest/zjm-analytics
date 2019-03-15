@@ -1,0 +1,40 @@
+.box-list {
+  background: #fafafa;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+
+  .box-list__row {
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    height: 45px;
+    &:not(.box-list__row--no-highlight):hover {
+      background: #eee;
+    }
+  }
+
+  .box-list__action-row {
+    padding: 5px 20px;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .box-list__row-actions {
+    margin-left: auto;
+    display: flex;
+  }
+
+  .box-list__action {
+    display: flex;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+
+  .box-list__tooltip {
+    margin-right: 20px;
+  }
+
+  .box-list__action-icon {
+    height: 20px;
+  }
+}

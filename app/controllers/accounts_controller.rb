@@ -6,7 +6,8 @@ class AccountsController < ApplicationController
   before_action :current_users_accounts!, only: [:index]
 
   def index
-    @accounts = User.find(params[:user_id]).all_accounts
+    @owned_accounts = User.find(params[:user_id]).owned_accounts
+    @member_accounts = User.find(params[:user_id]).accounts
   end
 
   # GET /accounts/1
@@ -39,7 +40,7 @@ class AccountsController < ApplicationController
 
     respond_to do |format|
       if @account.save
-        format.html { redirect_to [@account.owner, @account], notice: 'Account was successfully created.' }
+        format.html { redirect_back fallback_location: [@account.owner, @account] }
         format.json { render :show, status: :created, location: [@account.owner, @account] }
       else
         format.html { render :new }
@@ -53,7 +54,7 @@ class AccountsController < ApplicationController
   def update
     respond_to do |format|
       if @account.update(account_params)
-        format.html { redirect_to [@account.owner, @account], notice: 'Account was successfully updated.' }
+        format.html { redirect_back fallback_location: [@account.owner, @account] }
         format.json { render :show, status: :ok, location: [@account.owner, @account] }
       else
         format.html { render :edit }

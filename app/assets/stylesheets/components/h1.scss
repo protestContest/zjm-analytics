@@ -12,15 +12,26 @@
   margin-top: 0;
 }
 
+.h1.h1--cuddle,
+.h2.h2--cuddle {
+  margin-bottom: 20px;
+}
+
 .subtitle {
   font-size: 20px;
   font-weight: normal;
   margin: 0;
 }
 
-hgroup {
+hgroup,
+hgroup.h1 {
   margin-bottom: 32px;
 }
-hgroup .h1 {
+hgroup.h2 {
+  margin-bottom: 28px;
+  font-weight: initial;
+}
+hgroup .h1,
+hgroup .h2 {
   margin-bottom: 0;
 }

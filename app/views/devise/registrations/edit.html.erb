@@ -1,48 +1,88 @@
-<h1 class='h1'>Edit <%= resource_name.to_s.humanize %></h1>
+<div class='row'>
+  <div class='whole column'>
+    <h1 class='h1'>Settings</h1>
+  </div>
+</div>
 
-<section>
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'form col-4 offset-4' }) do |f| %>
-    <%= devise_error_messages! %>
+<div class='row'>
+  <div class='four columns'>
+    <%= render :partial => 'shared/settings-nav', locals: {current_page: 'profile'} %>
+  </div>
+  <div class='seven columns offset by-one'>
+    <h2 class='h2'>Edit Profile</h2>
 
-    <div class="form__row">
-      <%= f.label :email, class: 'label' %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'input' %>
-    </div>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'form' }) do |f| %>
+        <%= devise_error_messages! %>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-    <% end %>
+        <section class='section'>
+          <div class='row pull-down'>
+            <div class="seven columns">
+              <%= f.label :email, class: 'label' %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'input' %>
+            </div>
+            <div class='five columns'>
+              <%= f.submit "Update", class: 'button' %>
+            </div>
+          </div>
 
-    <div class="form__row">
-      <%= f.label :password, class: 'label' %>
-      <%= f.password_field :password, autocomplete: "new-password", class: 'input' %>
-      <% if @minimum_password_length %>
-        <div class='t-info'><%= @minimum_password_length %> characters minimum</div>
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <% end %>
+        </section>
+
+        <section class='section'>
+          <h2 class='h2'>Change Password</h2>
+
+          <div class='row'>
+            <div class='seven columns'>
+              <div class="form__row">
+                  <%= f.label :password, 'New Password', class: 'label' %>
+                  <%= f.password_field :password, autocomplete: "new-password", class: 'input' %>
+                  <% if @minimum_password_length %>
+                    <div class='t-info'><%= @minimum_password_length %> characters minimum</div>
+                  <% end %>
+              </div>
+
+              <div class="form__row">
+                <%= f.label :password_confirmation, class: 'label' %>
+                <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'input' %>
+              </div>
+
+              <div class="form__row">
+                <%= f.label :current_password, class: 'label' %>
+                <%= f.password_field :current_password, autocomplete: "current-password", class: 'input' %>
+                <div class='t-info'>Needed to confirm your changes</div>
+              </div>
+
+              <div class="form__row">
+                <%= f.submit "Change Password", class: 'button' %>
+              </div>
+            </div>
+            <div class='five columns'></div>
+          </div>
+        </section>
       <% end %>
-      <div class='t-info'>Leave blank if you don't want to change it</div>
-    </div>
 
-    <div class="form__row">
-      <%= f.label :password_confirmation, class: 'label' %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'input' %>
-    </div>
+    <section class='section'>
+      <hgroup class='h2'>
+        <h2 class='h2'>Delete Profile</h2>
+        <div class='t-info'>WARNING! This will delete all your accounts and all user data. This cannot be undone.</div>
+      </hgroup>
 
-    <div class="form__row">
-      <%= f.label :current_password, class: 'label' %>
-      <%= f.password_field :current_password, autocomplete: "current-password", class: 'input' %>
-      <div class='t-info'>Needed to confirm your changes</div>
-    </div>
+      <div class='row pull-down'>
+        <div class='seven columns'>
+          <label class='label' for='confirm_delete_input'>Type “I want to leave” to confirm</label>
+          <input class='input' type='text' id='confirm_delete_input' placeholder="I want to leave" />
+        </div>
+        <div class='five columns'>
+          <%= button_to "Delete all data", registration_path(resource_name), disabled: true, method: :delete, class: 'button button--danger', data: { enabletext: '#confirm_delete_input' } %>
+        </div>
+      </div>
+    </section>
 
-    <div class="form__row">
-      <%= f.submit "Update", class: 'button' %>
-    </div>
-  <% end %>
-</section>
+    <section>
+      <%= link_to "Back", :back %>
+    </section>
 
-<section class='col-4 offset-4'>
-  <h3>Cancel my account</h3>
-
-  <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'button button--danger' %></p>
-
-  <%= link_to "Back", :back %>
-</section>
+  </div>
+</div>

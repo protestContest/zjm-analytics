@@ -1,0 +1,9 @@
+<div class='settings-nav'>
+  <% settings_pages.each do |page| %>
+    <% if page[:name] == current_page %>
+      <div class='settings-nav__item settings-nav__item--active'><%= page[:name] %></div>
+    <% else %>
+      <a href='<%= page[:url] %>' class='settings-nav__item'><%= page[:name] %></a>
+    <% end %>
+  <% end %>
+</div>

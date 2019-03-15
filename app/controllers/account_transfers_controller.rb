@@ -20,6 +20,7 @@ class AccountTransfersController < ApplicationController
     respond_to do |format|
       if @transfer.save
         AccountTransferMailer.with(transfer: @transfer).transfer_request.deliver_later
+        # AccountTransferMailer.with(transfer: @transfer).transfer_notification.deliver_later
         format.html { redirect_to [current_user, @transfer.account], notice: 'Account transfer was successfully requested.' }
         format.json { render :show, status: :created, location: [current_user, @transfer.account] }
       else

@@ -1,5 +1,5 @@
 $c-primary: #E3C69A;
-$c-primary-dark: darken($c-primary, 20%);
+$c-primary-dark: #CCC200;
 $c-primary-light: lighten($c-primary, 20%);
 $c-primary-pale: #FBFBF7;
 
@@ -17,6 +17,8 @@ $c-less-white: #fafafa;
 $c-least-white: #eee;
 
 $c-danger: #ed0000;
+$c-light-danger: #EFAAAA;
+$c-light-danger-text: #fbeaeb;
 
 $c-light-gradient: linear-gradient(#f9f9f9, #f4f4f4);
 $c-dim-gradient: linear-gradient(#f4f4f4, #f0f0f0);

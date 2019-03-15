@@ -1,25 +1,32 @@
-<h1 class='h1'>Accounts</h1>
-
-<section class='section'>
-<% @accounts.each do |account| %>
-  <div class='resource-list-item'>
-    <h2 class='resource-list-item__name'>
-      <%= link_to account.name, [account.owner, account] %>
-    </h2>
-    <% if account == current_account %>
-      <span class='resource-list-item__link'>Current account</span>
-    <% else %>
-      <%= link_to 'Switch to this account', switch_account_path(account), class: 'resource-list-item__link' %>
-    <% end %>
-    <% if account.owner == current_user %>
-      | <%= link_to 'Edit', edit_user_account_path(account.owner, account), class: 'resource-list-item__link' %>
-      <% if current_user.owned_accounts.size > 1 %>
-        | <%= link_to 'Delete', [account.owner, account], method: :delete, data: { confirm: "Delete account #{account.name}?" }, class: 'resource-list-item__link' %>
-      <% end %>
-    <% end %>
+<div class='row'>
+  <div class='whole column'>
+    <h1 class='h1'>Settings</h1>
   </div>
-<% end %>
-</section>
+</div>
+
+<div class='row'>
+  <div class='four columns'>
+    <%= render :partial => 'shared/settings-nav', locals: {current_page: 'accounts'} %>
+  </div>
+  <div class='seven columns'>
+    <h2 class='h2 h2--cuddle'>Accounts you manage</h2>
 
 
-<%= link_to 'New Account', new_user_account_path(current_user), class: 'button' %>
+    <section class='section'>
+      <div class='box-list'>
+        <% @owned_accounts.each do |account| %>
+          <%= render :partial => 'box-list-row', locals: {account: account, owned: true} %>
+        <% end %>
+
+        <div class='box-list__action-row _will-hide' id='account-row-new' data-js-toggle='#account-row-new,#account-row-new + .box-list__row'>
+          <div class='t-label'>Create new account</div>
+        </div>
+        <div class='box-list__row box-list__row--no-highlight _hidden' id='account-row-new'>
+          <%= render :partial => 'row-form', locals: {account: Account.new, owner: current_user} %>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+

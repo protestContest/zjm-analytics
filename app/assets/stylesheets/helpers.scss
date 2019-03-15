@@ -1,3 +1,10 @@
 ._unmargin {
   margin: 0 !important;
 }
+
+._hidden:not(._active) {
+  display: none !important;
+}
+._will-hide._active {
+  display: none !important;
+}
