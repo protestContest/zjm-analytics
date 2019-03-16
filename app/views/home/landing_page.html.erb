@@ -7,23 +7,36 @@
       </div>
     </div>
     <div class='landing-page__right'>
-      <div class='landing-page__content-box'>
-        <div class='landing-page__header'>
-          Sign up to get notified when the beta is ready
-        </div>
-        <div class='landing-page__form'>
-          <div class='label'>Email</div>
-          <input type='email' class='input' />
-        </div>
-        <div class='landing-page__actions'>
-          <div class='_flex-center'>
-            <button class='button'>Sign Up</button>
+      <% if flash[:notice] %>
+        <div class='landing-page__content-box'>
+          <div class='landing-page__header'>
+            <%= flash[:notice] %>
+          </div>
+          <div class='landing-page__actions'>
             <div class='landing-page__info'>
               Already have an account? <span class='t-link'>Log in</span>
             </div>
           </div>
         </div>
-      </div>
+      <% else %>
+        <%= form_for @signup, html: { class: 'landing-page__content-box' } do |f| %>
+          <div class='landing-page__header'>
+            Sign up to get notified when the beta is ready
+          </div>
+          <div class='landing-page__form'>
+            <%= f.label :email, class: 'label' %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'input' %>
+          </div>
+          <div class='landing-page__actions'>
+            <div class='_flex-center'>
+              <%= f.submit "Sign Up", class: 'button button--large' %>
+              <div class='landing-page__info'>
+                Already have an account? <span class='t-link'>Log in</span>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </main>

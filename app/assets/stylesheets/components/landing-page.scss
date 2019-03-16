@@ -60,7 +60,7 @@
     align-items: flex-end;
   }
 
-  .landing-page__info {
+  .landing-page__info:not(:first-child) {
     margin-left: 20px;
   }
 

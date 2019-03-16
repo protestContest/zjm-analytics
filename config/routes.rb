@@ -35,5 +35,7 @@ Rails.application.routes.draw do
 
   use_doorkeeper
 
+  resources :mailing_list_signups, only: :create
+
   mount Sidekiq::Web => '/sidekiq'
 end

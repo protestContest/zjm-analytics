@@ -7,6 +7,7 @@ class HomeController < ApplicationController
   end
 
   def landing_page
+    @signup = MailingListSignup.new
     render :action => "landing_page", :layout => "blank"
   end
 end
