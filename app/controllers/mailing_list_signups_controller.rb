@@ -4,7 +4,7 @@ class MailingListSignupsController < ApplicationController
   def create
     signup = MailingListSignup.new(mailing_list_signup_params)
     signup.save
-    flash[:notice] = "Thanks! We'll email you when we're ready"
+    flash[:thanks] = "Thanks! We'll email you when we're ready"
     redirect_to root_url
   end
 

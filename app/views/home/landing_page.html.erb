@@ -7,14 +7,14 @@
       </div>
     </div>
     <div class='landing-page__right'>
-      <% if flash[:notice] %>
+      <% if flash[:thanks] %>
         <div class='landing-page__content-box _will-hide' id='signup-box'>
           <div class='landing-page__header'>
-            <%= flash[:notice] %>
+            <%= flash[:thanks] %>
           </div>
           <div class='landing-page__actions'>
             <div class='landing-page__info'>
-              Already have an account? <span class='t-link' data-js-toggle='#signup-box,#login-box'>Log in</span>
+              Already have an account? <span class='t-link' data-js-toggle='#signup-box,#login-box'>Log&nbsp;in</span>
             </div>
           </div>
         </div>
@@ -31,7 +31,7 @@
             <div class='_flex-center'>
               <%= f.submit "Sign up", class: 'button button--large' %>
               <div class='landing-page__info'>
-                Already have an account? <span class='t-link' data-js-toggle='#signup-box,#login-box'>Log in</span>
+                Already have an account? <span class='t-link' data-js-toggle='#signup-box,#login-box'>Log&nbsp;in</span>
               </div>
             </div>
           </div>
@@ -53,7 +53,7 @@
           <div class='_flex-center'>
             <%= f.submit "Log in", class: 'button button--large' %>
             <div class='landing-page__info'>
-              Don't have an account? <span class='t-link' data-js-toggle='#signup-box,#login-box'>Sign up</span>
+              Don't have an account? <span class='t-link' data-js-toggle='#signup-box,#login-box'>Sign&nbsp;up</span>
             </div>
           </div>
         </div>
