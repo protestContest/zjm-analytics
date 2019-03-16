@@ -17,7 +17,7 @@ class AccountInvitesController < ApplicationController
     respond_to do |format|
       if @invite.save
         # AccountInviteMailer.with(transfer: @invite).transfer_request.deliver_later
-        format.html { redirect_to [current_user, @invite.account], notice: 'Account transfer was successfully requested.' }
+        format.html { redirect_back fallback_to: [current_user, @invite.account] }
         format.json { render :show, status: :created, location: [current_user, @invite.account] }
       else
         format.html { render :new }

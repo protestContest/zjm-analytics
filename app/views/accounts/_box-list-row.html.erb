@@ -8,9 +8,29 @@
       </a>
     <% end %>
     <% if owned %>
-      <a href='<%= switch_account_path(account) %>' class='box-list__action' data-js-tooltip='#account-tooltip-<%= account.id %>:Invite user to account'>
-        <img class='box-list__action-icon' src='<%= asset_path("entypo/user-add.svg") %>' alt='Switch accounts' />
-      </a>
+      <div class='modal-container'>
+        <div class='box-list__action' data-js-toggle="#invite-account-modal-<%= account.id %>" data-js-tooltip='#account-tooltip-<%= account.id %>:Invite user to account'>
+          <img class='box-list__action-icon' src='<%= asset_path("entypo/user-add.svg") %>' alt='Switch accounts' />
+        </div>
+
+        <div class='modal _hidden' id="invite-account-modal-<%= account.id %>">
+          <%= form_with model: account.account_invites.build do |form| %>
+            <input type='hidden' name='account_invite[account_id]' value="<%= account.id %>" />
+            <div class='row-form'>
+              <%= form.email_field :invite_email, class: 'row-form__input', placeholder: 'fred@example.com' %>
+              <!-- <input class='row-form__input' type='email' /> -->
+              <div class='row-form__actions'>
+                <%= form.submit 'Invite', class: 'button' %>
+                <div class='modal__close' data-js-toggle='#invite-account-modal-<%= account.id %>'>
+                  <img class='box-list__action-icon' src='<%= asset_path("entypo/cancel.svg") %>' />
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <div class='modal__arrow'></div>
+        </div>
+
+      </div>
       <div class='box-list__action' data-js-tooltip='#account-tooltip-<%= account.id %>:Edit account ' data-js-toggle='<%= row_toggle_selector account %>'>
         <img class='box-list__action-icon' src='<%= asset_path("entypo/pencil.svg") %>' alt='Switch accounts' />
       </div>
