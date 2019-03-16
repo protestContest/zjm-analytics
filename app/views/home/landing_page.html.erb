@@ -8,34 +8,55 @@
     </div>
     <div class='landing-page__right'>
       <% if flash[:notice] %>
-        <div class='landing-page__content-box'>
+        <div class='landing-page__content-box _will-hide' id='signup-box'>
           <div class='landing-page__header'>
             <%= flash[:notice] %>
           </div>
           <div class='landing-page__actions'>
             <div class='landing-page__info'>
-              Already have an account? <span class='t-link'>Log in</span>
+              Already have an account? <span class='t-link' data-js-toggle='#signup-box,#login-box'>Log in</span>
             </div>
           </div>
         </div>
       <% else %>
-        <%= form_for @signup, html: { class: 'landing-page__content-box' } do |f| %>
+        <%= form_for @signup, html: { class: 'landing-page__content-box _will-hide', id: 'signup-box' } do |f| %>
           <div class='landing-page__header'>
             Sign up to get notified when the beta is ready
           </div>
-          <div class='landing-page__form'>
+          <div class='landing-page__form-row'>
             <%= f.label :email, class: 'label' %>
             <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'input' %>
           </div>
           <div class='landing-page__actions'>
             <div class='_flex-center'>
-              <%= f.submit "Sign Up", class: 'button button--large' %>
+              <%= f.submit "Sign up", class: 'button button--large' %>
               <div class='landing-page__info'>
-                Already have an account? <span class='t-link'>Log in</span>
+                Already have an account? <span class='t-link' data-js-toggle='#signup-box,#login-box'>Log in</span>
               </div>
             </div>
           </div>
         <% end %>
+      <% end %>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'landing-page__content-box _hidden', id: 'login-box' }) do |f| %>
+        <div class='landing-page__header'>
+          Log in
+        </div>
+        <div class='landing-page__form-row'>
+          <%= f.label :email, class: 'label' %>
+          <%= f.email_field :email, autocomplete: "email", class: 'input' %>
+        </div>
+        <div class='landing-page__form-row'>
+          <%= f.label :password, class: 'label' %>
+          <%= f.password_field :password, autocomplete: "current-password", class: 'input' %>
+        </div>
+        <div class='landing-page__actions'>
+          <div class='_flex-center'>
+            <%= f.submit "Log in", class: 'button button--large' %>
+            <div class='landing-page__info'>
+              Don't have an account? <span class='t-link' data-js-toggle='#signup-box,#login-box'>Sign up</span>
+            </div>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>
