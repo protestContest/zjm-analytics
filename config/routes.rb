@@ -11,7 +11,8 @@ Rails.application.routes.draw do
     end
 
     unauthenticated do
-      root 'devise/sessions#new'
+      root 'home#landing_page'
+      # root 'devise/sessions#new'
     end
 
     resources :sites

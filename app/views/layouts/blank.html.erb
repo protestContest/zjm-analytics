@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>zjm // Analytics</title>
+    <%= csrf_meta_tags %>
+
+    <link rel='shortcut icon' href='/icon.png' />
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="/pills.min.css">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js'></script>
+  </head>
+
+  <body class='layout'>
+
+    <%= yield %>
+
+    <%= own_tracking_tag %>
+  </body>
+</html>
