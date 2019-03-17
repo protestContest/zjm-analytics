@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='UTF-8' />
+    <title>zjm // Analytics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <%= csrf_meta_tags %>
+    <link rel='shortcut icon' href='/icon.png' />
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="/pills.min.css">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js'></script>
+  </head>
+
+  <body class='layout'>
+    <header class='header'>
+      <div class='header__title'><a href='/'><%= image_tag('logo.svg', class: 'header__logo', height: 36) %></a></div>
+      <nav class='site-nav site-nav--align-bottom'>
+        <% if user_signed_in? %>
+          <%= link_to "Dashboard", dashboard_path, class: 'site-nav__item site-nav__item--link' %>
+          <%= render partial: 'shared/account_menu' %>
+          <%= render partial: 'shared/user_menu' %>
+        <% else %>
+          <%= link_to "Sign up", new_user_registration_path, class: 'site-nav__item site-nav__item--link' %>
+          <%= link_to "Login", new_user_session_path, class: 'site-nav__item site-nav__item--link' %>
+        <% end %>
+      </nav>
+    </header>
+
+    <% if notice %>
+      <p class='flash-bar flash-bar--notice layout--container' id="notice"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class='flash-bar flash-bar--alert layout--container' id="alert"><%= alert %></p>
+    <% end %>
+
+    <main class='layout__main _relative'>
+    <%= yield %>
+    </main>
+
+    <footer class='footer'>
+      <div class='layout--container'>
+        <ul class='footer-list'>
+          <li>Privacy Policy</li>
+          <li>Terms of Service</li>
+          <li>Feedback</li>
+        </ul>
+      </div>
+    </footer>
+
+    <script>
+    var clientId=document.cookie.replace(/(?:(?:^|.*;\s*)_za\s*\=\s*([^;]*).*$)|^.*$/,"$1");0===clientId.length&&(clientId=function(){var a=new Date().getTime(),b="xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,function(b){var c=0|(a+16*Math.random())%16;return a=Math.floor(a/16),("x"==b?c:8|3&c).toString(16)});return b}(),document.cookie="_za="+clientId+"; max-age=63072000; domain="+document.location.hostname);var i=new Image;i.src=`https://analytics.zjm.me/track?hit_type=pageview&location=${window.location}&language=${navigator.language}&encoding=${document.charset}&title=${document.title}&color_depth=${screen.colorDepth}&screen_res=${screen.width}x${screen.height}&viewport=${innerWidth}x${innerHeight}&tracking_id=ZA-000001-6&client_id=${clientId}`;
+    </script>
+
+  </body>
+</html>

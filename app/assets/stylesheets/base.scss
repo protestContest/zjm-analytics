@@ -42,6 +42,15 @@ body {
   margin: auto;
 }
 
+.content {
+  width: 100%;
+  max-width: 1040px;
+  padding: 50px;
+  margin: auto;
+  margin-top: 100px;
+  background: #fdfdfd;
+}
+
 pre {
   overflow: scroll;
 }

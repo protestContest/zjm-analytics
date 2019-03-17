@@ -13,6 +13,7 @@ class SitesController < ApplicationController
       by_week: @site.hits_by_week,
       by_month: @site.hits_by_month
     }
+    render "show", layout: "site-detail"
   end
 
   def new
