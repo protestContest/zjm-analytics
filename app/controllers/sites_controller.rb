@@ -1,6 +1,4 @@
 class SitesController < ApplicationController
-  layout "site-detail"
-
   before_action :set_site, only: [:show, :edit, :update, :destroy]
   before_action :user_has_site!, only: [:show, :edit, :update, :destroy]
 
