@@ -5,10 +5,13 @@
   top: 0;
   left: 0;
 
-  background: gray;
   z-index: -1;
   background-position: top center;
   background-size: 105%;
   opacity: 0.5;
   filter: blur(2px);
+
+  @media (max-width: 640px) {
+    background-image: none !important;
+  }
 }

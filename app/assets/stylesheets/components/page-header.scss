@@ -1,12 +1,21 @@
 .page-header {
   display: flex;
   align-items: center;
-}
 
-.page-header .page-header__actions {
-  margin-left: auto;
-}
+  .page-header__actions {
+    margin-left: auto;
+  }
 
-.page-header .page-header__actions .page-header__action {
-  margin-left: 10px;
+  .page-header__action {
+    margin-left: 10px;
+  }
+
+  .page-header__action-icon {
+    width: 24px;
+
+  }
+
+  @media (max-width: 640px) {
+
+  }
 }

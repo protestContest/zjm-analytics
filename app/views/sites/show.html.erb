@@ -11,15 +11,20 @@
       </h2>
     <% end %>
   </hgroup>
-  <div class='page-header__actions'>
+  <div class='page-header__actions _mobile-hidden'>
     <%= link_to 'Edit Site', edit_site_path, class: 'page-header__action button' %>
+  </div>
+  <div class='page-header__actions _mobile-only'>
+    <%= link_to edit_site_path, class: 'page-header__action' do %>
+      <%= image_tag('entypo/cog.svg', class: 'page-header__action-icon') %>
+    <% end %>
   </div>
 </header>
 
 <section class='section'>
   <header class='page-header'>
     <h2 class='h2'>Unique Users</h2>
-    <div class='page-header__actions'>
+    <div class='page-header__actions _mobile-hidden'>
       <div class='label'>View By</div>
       <div class='tab-list'>
         <div class='tab-list__tab _active' data-js-selects='.tab-list__tab,&' onclick='selectFilter("day")'>Day</div>
@@ -28,6 +33,15 @@
       </div>
     </div>
   </header>
+
+  <div class='_mobile-only'>
+    <div class='label'>View By</div>
+    <div class='tab-list'>
+      <div class='tab-list__tab _active' data-js-selects='.tab-list__tab,&' onclick='selectFilter("day")'>Day</div>
+      <div class='tab-list__tab' data-js-selects='.tab-list__tab,&' onclick='selectFilter("week")'>Week</div>
+      <div class='tab-list__tab' data-js-selects='.tab-list__tab,&' onclick='selectFilter("month")'>Month</div>
+    </div>
+  </div>
 
   <canvas id='hitChart' class='chart'></canvas>
   <script>

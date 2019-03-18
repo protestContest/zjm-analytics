@@ -1,0 +1,13 @@
+<header class='header'>
+  <div class='header__title'><a href='/'><%= image_tag('logo.svg', class: 'header__logo', height: 36) %></a></div>
+  <nav class='site-nav site-nav--align-bottom'>
+    <% if user_signed_in? %>
+      <%= link_to "Dashboard", dashboard_path, class: 'site-nav__item site-nav__item--link _mobile-hidden' %>
+      <%= render partial: 'shared/account_menu' %>
+      <%= render partial: 'shared/user_menu' %>
+    <% else %>
+      <%= link_to "Sign up", new_user_registration_path, class: 'site-nav__item site-nav__item--link' %>
+      <%= link_to "Login", new_user_session_path, class: 'site-nav__item site-nav__item--link' %>
+    <% end %>
+  </nav>
+</header>
