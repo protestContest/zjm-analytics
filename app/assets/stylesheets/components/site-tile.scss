@@ -28,6 +28,14 @@
     height: auto;
   }
 
+  .site-tile__footer {
+    display: flex;
+  }
+
+  .site-tile__details {
+    flex: 1;
+  }
+
   .site-tile__title {
     display: block;
     font-size: 16px;
@@ -37,6 +45,27 @@
     display: block;
     font-size: 12px;
     font-style: italic;
+  }
+
+  @media (max-width: 1024px) {
+    flex-direction: row;
+
+    .site-tile__img-wrapper {
+      flex-shrink: 0;
+      height: 75px;
+      width: 100px;
+    }
+
+    .site-tile__footer {
+      margin-left: 10px;
+      justify-content: space-between;
+      flex: 1;
+    }
+
+    .site-tile__title {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
   }
 
 }

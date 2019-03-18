@@ -1,7 +1,10 @@
 <div class='site-nav__item button-menu'>
-  <div class='button-menu__button'>
+  <div class='button-menu__button _mobile-hidden'>
     <div class='button-menu__title button-menu__title--small'>Account</div>
     <%= current_account.name %>
+  </div>
+  <div class='button-menu__button _mobile-only'>
+    <%= image_tag('entypo/briefcase.svg', class: 'button-menu__icon') %>
   </div>
   <div class='button-menu__popup'>
     <div class='button-menu__menu' id='userMenu'>

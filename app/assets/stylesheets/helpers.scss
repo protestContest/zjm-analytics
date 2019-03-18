@@ -14,3 +14,13 @@
   display: flex;
   align-items: center;
 }
+._mobile-hidden {
+  @media (max-width: 640px) {
+    display: none !important;
+  }
+}
+._mobile-only {
+  @media (min-width: 641px) {
+    display: none !important;
+  }
+}

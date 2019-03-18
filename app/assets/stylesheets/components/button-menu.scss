@@ -51,6 +51,13 @@
     display: block;
   }
 
+  .button-menu__icon {
+    width: 30px;
+    height: 30px;
+    padding: 3px;
+    opacity: 0.5;
+  }
+
   .button-menu__title {
     font-weight: 600;
     font-size: 12px;
@@ -80,5 +87,13 @@
   .button-menu__divider {
     border: 0;
     border-bottom: 1px solid $c-light-gray;
+  }
+
+  @media (max-width: 640px) {
+    .button-menu__button {
+      padding-left: 4px;
+      padding-right: 4px;
+      min-width: 0;
+    }
   }
 }

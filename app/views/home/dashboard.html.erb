@@ -14,8 +14,8 @@
             <img class='site-tile__img' data-js-fallback-img='<%= image_path('no-site.svg') %>' src='<%= site.screenshot_url %>' />
           </div>
         <% end %>
-        <div class='flex-view'>
-          <div>
+        <div class='site-tile__footer'>
+          <div class='site-tile__details'>
             <%= link_to site.name, site, class: 'site-tile__title' %>
             <%= link_to site.url, site, class: 'site-tile__subtitle' %>
           </div>

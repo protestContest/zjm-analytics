@@ -9,23 +9,32 @@
   border-bottom: 2px solid $c-light-gray;
   display: flex;
   align-items: center;
-}
-.header > :first-child {
-  margin-left: 40px;
-}
-.header > :last-child {
-  margin-right: 40px;
-}
 
-.header .header__logo {
-  height: 36px;
-}
-.header .header__title {
-  font-size: 16px;
-  font-weight: 500;
-  margin-right: auto;
-}
-.header .header__title a {
-  color: inherit;
-  text-decoration: inherit;
+  > :first-child {
+    margin-left: 40px;
+  }
+
+  > :last-child {
+    margin-right: 40px;
+  }
+
+  .header__logo {
+    height: 36px;
+  }
+
+  .header__title {
+    font-size: 16px;
+    font-weight: 500;
+    margin-right: auto;
+  }
+
+  @media (max-width: 640px) {
+    > :first-child {
+      margin-left: 10px;
+    }
+
+    > :last-child {
+      margin-right: 10px;
+    }
+  }
 }

@@ -38,4 +38,10 @@
   &.site-nav--align-bottom .site-nav__item--link {
     padding-bottom: $d-header-padding;
   }
+
+  @media (max-width: 640px) {
+    .site-nav__item {
+      margin-left: 0;
+    }
+  }
 }
