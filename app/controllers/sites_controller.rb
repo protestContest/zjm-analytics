@@ -1,4 +1,6 @@
 class SitesController < ApplicationController
+  layout "site-detail"
+
   before_action :set_site, only: [:show, :edit, :update, :destroy]
   before_action :user_has_site!, only: [:show, :edit, :update, :destroy]
 
@@ -13,7 +15,6 @@ class SitesController < ApplicationController
       by_week: @site.hits_by_week,
       by_month: @site.hits_by_month
     }
-    render "show", layout: "site-detail"
   end
 
   def new

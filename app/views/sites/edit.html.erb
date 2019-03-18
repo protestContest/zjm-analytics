@@ -1,7 +1,60 @@
-<%= render :partial => 'form' %>
+<section class='section'>
+  <%= form_for @site, html: { class: "inline-form" } do |f| %>
+  <header class='page-header'>
+    <div class='inline-form__control'>
+      <%= f.text_field :name, class: 'h1 input input--subtle' %>
+      <%= f.label :name, class: 'label' %>
+    </div>
+    <div class='inline-form__control'>
+      <%= f.url_field :url, class: 'input input--subtle' %>
+      <%= f.label :url, class: 'label' %>
+    </div>
+    <div class='page-header__actions'>
+      <%= f.submit 'Save', class: 'page-header__action button button--primary' %>
+      <%= link_to 'Cancel', @site, class: 'page-header__action button' %>
+    </div>
+  </header>
+  <% end %>
+</section>
 
-<div class='row'>
-  <div class='four columns offset by-four'>
-    <%= link_to 'Delete Site', @site, method: :delete, data: {confirm: "Are you sure?"}, class: 'button button--danger' %>
+<section class='section'>
+  <header class='page-header'>
+    <hgroup class='h2'>
+      <h2 class='h2'>Tracking Code</h2>
+      <p class='subtitle t-muted'>Add this to your website to start tracking page views</p>
+    </hgroup>
+    <div class='page-header__actions'>
+      <button class='button' data-js-copy='#tracking_code,Copied!'>Copy Code</button>
+    </div>
+  </header>
+  <%= render "tracking_code" %>
+</section>
+
+<section class='section'>
+  <hgroup class='h2'>
+    <h2 class='h2'>Track Packs</h2>
+    <p class='subtitle'>Customize what you track by adding track packs</p>
+  </hgroup>
+  <div class='rope-list'>
+    <div class='rope-list__item'>
+      <div class='trackpack-tile'>
+        <img class='trackpack-tile__icon' src='<%= asset_path('entypo/chart-bar.svg') %>'>
+        <div class='trackpack-tile__label'>Page Views</div>
+      </div>
+    </div>
+    <div class='rope-list__item'>
+      <div class='trackpack-tile'>
+        <img class='trackpack-tile__icon' src='<%= asset_path('entypo/thumbs-up.svg') %>'>
+        <div class='trackpack-tile__label'>Respect DNT</div>
+      </div>
+    </div>
   </div>
-</div>
+</section>
+
+<section class='section'>
+  <hgroup class='h2'>
+    <h2 class='h2'>Delete Site</h2>
+    <p class='subtitle'>If you delete this site, all site data will be erased. You can also transfer this site to another account.</p>
+  </hgroup>
+  <%= link_to 'Delete Site', @site, method: :delete, data: {confirm: "Are you sure?"}, class: 'button button--danger' %>
+</section>

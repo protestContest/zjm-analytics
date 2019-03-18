@@ -1,0 +1,19 @@
+.rope-list {
+  display: flex;
+
+  .rope-list__item {
+    margin-right: 20px;
+    position: relative;
+  }
+
+  .rope-list__item::after {
+    content: url(image_path('rope.svg'));
+    position: absolute;
+    right: -20px;
+    top: calc(50% - 10px);
+  }
+  .rope-list__item:last-child::after {
+    content: url(image_path('rope-end.svg'));
+    right: -13px;
+  }
+}

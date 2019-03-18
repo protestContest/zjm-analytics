@@ -35,7 +35,10 @@
     <% end %>
 
     <main class='layout__main _relative'>
-    <%= yield %>
+      <div class='site-hero' style="background-image: url(<%= @site.screenshot_url %>)"></div>
+      <div class='content'>
+        <%= yield %>
+      </div>
     </main>
 
     <footer class='footer'>

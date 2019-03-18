@@ -1,4 +1,5 @@
 @import '../shared/colors';
+@import './h1';
 
 .input {
   width: 100%;
@@ -9,4 +10,20 @@
   padding: 0 12px;
   display: block;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+.input.input--subtle {
+  background: none;
+  border-radius: 0;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #333;
+  box-shadow: none;
+  padding: 0;
+  margin-bottom: 4px;
+}
+
+.input.h1 {
+  @extend .h1;
 }

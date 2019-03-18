@@ -1,98 +1,89 @@
-<div class='site-hero' style="background-image: url(<%= @site.screenshot_url %>)"></div>
 
-<div class='content'>
+<header class='page-header'>
+  <hgroup>
+    <h1 class='h1'><%= @site.name %></h1>
+    <% if @site.url? %>
+      <h2 class='subtitle'>
+        <%= link_to @site.url, @site.url, target: '_blank' %>
+        <%= link_to @site.url, target: '_blank', class: 'icon-inline' do %>
+          <%= image_tag 'external.png', size: 16 %>
+        <% end %>
+      </h2>
+    <% end %>
+  </hgroup>
+  <div class='page-header__actions'>
+    <%= link_to 'Edit Site', edit_site_path, class: 'page-header__action button' %>
+  </div>
+</header>
+
+<section class='section'>
   <header class='page-header'>
-    <hgroup>
-      <h1 class='h1'><%= @site.name %></h1>
-      <% if @site.url? %>
-        <h2 class='subtitle'>
-          <%= link_to @site.url, @site.url, target: '_blank' %>
-          <%= link_to @site.url, target: '_blank', class: 'icon-inline' do %>
-            <%= image_tag 'external.png', size: 16 %>
-          <% end %>
-        </h2>
-      <% end %>
-    </hgroup>
+    <h2 class='h2'>Unique Users</h2>
     <div class='page-header__actions'>
-      <%= link_to 'Edit Site', edit_site_path, class: 'page-header__action button' %>
+      <div class='label'>View By</div>
+      <div class='tab-list'>
+        <div class='tab-list__tab _active' data-js-selects='.tab-list__tab,&' onclick='selectFilter("day")'>Day</div>
+        <div class='tab-list__tab' data-js-selects='.tab-list__tab,&' onclick='selectFilter("week")'>Week</div>
+        <div class='tab-list__tab' data-js-selects='.tab-list__tab,&' onclick='selectFilter("month")'>Month</div>
+      </div>
     </div>
   </header>
 
-  <section class='section'>
-    <header class='page-header'>
-      <h2 class='h2'>Unique Users</h2>
-      <div class='page-header__actions'>
-        <div class='label'>View By</div>
-        <div class='tab-list'>
-          <div class='tab-list__tab _active' data-js-selects='.tab-list__tab,&' onclick='selectFilter("day")'>Day</div>
-          <div class='tab-list__tab' data-js-selects='.tab-list__tab,&' onclick='selectFilter("week")'>Week</div>
-          <div class='tab-list__tab' data-js-selects='.tab-list__tab,&' onclick='selectFilter("month")'>Month</div>
-        </div>
-      </div>
-    </header>
-
-    <canvas id='hitChart' class='chart'></canvas>
-    <script>
-      window.chartData = {
-        day: {
-          labels: <%= raw @hits[:by_day].map { |hit| hit.day.strftime("%d/%m") }.to_s %>,
-          data: <%= @hits[:by_day].map { |hit| hit.num_hits }.to_s %>
-        },
-        week: {
-          labels: <%= raw @hits[:by_week].map { |hit| hit.week.strftime("%d/%m") }.to_s %>,
-          data: <%= @hits[:by_week].map { |hit| hit.num_hits }.to_s %>
-        },
-        month: {
-          labels: <%= raw @hits[:by_month].map { |hit| hit.month.strftime("%m/%y") }.to_s %>,
-          data: <%= @hits[:by_month].map { |hit| hit.num_hits }.to_s %>
-        }
+  <canvas id='hitChart' class='chart'></canvas>
+  <script>
+    window.chartData = {
+      day: {
+        labels: <%= raw @hits[:by_day].map { |hit| hit.day.strftime("%d/%m") }.to_s %>,
+        data: <%= @hits[:by_day].map { |hit| hit.num_hits }.to_s %>
+      },
+      week: {
+        labels: <%= raw @hits[:by_week].map { |hit| hit.week.strftime("%d/%m") }.to_s %>,
+        data: <%= @hits[:by_week].map { |hit| hit.num_hits }.to_s %>
+      },
+      month: {
+        labels: <%= raw @hits[:by_month].map { |hit| hit.month.strftime("%m/%y") }.to_s %>,
+        data: <%= @hits[:by_month].map { |hit| hit.num_hits }.to_s %>
       }
+    }
 
-      var ctx = document.getElementById('hitChart').getContext('2d');
-      window.chart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: <%= raw @hits[:by_day].map { |hit| hit.day.strftime("%m/%d") }.to_s %>,
-          datasets: [{
-            label: 'Unique users',
-            data: <%= @hits[:by_day].map { |hit| hit.num_hits }.to_s %>,
-            backgroundColor: '#EDE100'
+    var ctx = document.getElementById('hitChart').getContext('2d');
+    window.chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: <%= raw @hits[:by_day].map { |hit| hit.day.strftime("%m/%d") }.to_s %>,
+        datasets: [{
+          label: 'Unique users',
+          data: <%= @hits[:by_day].map { |hit| hit.num_hits }.to_s %>,
+          backgroundColor: '#EDE100'
+        }]
+      },
+      options: {
+        legend: {
+          display: false
+        },
+        scales: {
+          xAxes: [{
+            gridLines: {
+              display:false
+            }
+          }],
+          yAxes: [{
+            ticks: {
+              min: 0,
+              suggestedMax: 10
+            }
           }]
-        },
-        options: {
-          legend: {
-            display: false
-          },
-          scales: {
-            xAxes: [{
-              gridLines: {
-                display:false
-              }
-            }],
-            yAxes: [{
-              ticks: {
-                min: 0,
-                suggestedMax: 10
-              }
-            }]
-          }
         }
-
-      });
-
-      function selectFilter(filter) {
-        if (!['day', 'week', 'month'].includes(filter)) return;
-
-        window.chart.data.labels = window.chartData[filter].labels;
-        window.chart.data.datasets[0].data = window.chartData[filter].data;
-        window.chart.update();
       }
-    </script>
-  </section>
 
-  <section>
-    <h2 class='h2'>Tracking Code</h2>
-    <p class='t-muted'>Add this to your website to start tracking page views</p>
-    <%= render "tracking_code" %>
-  </section>
-</div>
+    });
+
+    function selectFilter(filter) {
+      if (!['day', 'week', 'month'].includes(filter)) return;
+
+      window.chart.data.labels = window.chartData[filter].labels;
+      window.chart.data.datasets[0].data = window.chartData[filter].data;
+      window.chart.update();
+    }
+  </script>
+</section>
