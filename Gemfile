@@ -47,6 +47,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'capybara', '~> 2.13'
   gem 'factory_bot_rails'
+  gem 'cucumber-rails'
 end
 
 group :test do
