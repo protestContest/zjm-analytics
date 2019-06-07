@@ -26,7 +26,8 @@ class HitsController < ApplicationController
       screen_res: params[:screen_res],
       viewport: params[:viewport],
       tracking_id: params[:tracking_id],
-      client_id: params[:client_id]
+      client_id: params[:client_id],
+      referer: params[:referrer]
     })
 
     if hit.save then
